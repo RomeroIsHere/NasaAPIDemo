@@ -39,7 +39,7 @@ public class APODItext {
 
         PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
         PdfFont bold = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
-        Table table = new Table(UnitValue.createPercentArray(new float[]{0.03f,0.03f,0.03f,0.2f}))
+        Table table = new Table(UnitValue.createPercentArray(new float[]{0.03f,0.03f,0.03f,0.1f}))
                 .useAllAvailableWidth();
 
 
