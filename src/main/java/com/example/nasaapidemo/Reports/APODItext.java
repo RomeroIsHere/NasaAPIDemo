@@ -25,7 +25,6 @@ import java.util.List;
 public class APODItext {
 
     public void createPdf(String dest,List<APOD> p_Apod) throws IOException {
-        int v_contador;
         //Initialize PDF writer
         PdfWriter writer = new PdfWriter(dest);
 

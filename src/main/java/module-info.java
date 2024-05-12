@@ -13,6 +13,7 @@ module com.example.nasaapidemo {
     requires org.slf4j;
     requires org.apache.logging.log4j;
     requires io;
+    requires java.sql;
 
 
     opens com.example.nasaapidemo to javafx.fxml;
