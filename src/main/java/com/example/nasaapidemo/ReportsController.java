@@ -4,12 +4,16 @@ import com.example.nasaapidemo.Models.APOD;
 import com.example.nasaapidemo.Models.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReportsController {
+    @FXML
+    TextField txt_nameFile;
     List<APOD> a_apods=new ArrayList();
     @FXML
     protected void onReportonClick() throws IOException {

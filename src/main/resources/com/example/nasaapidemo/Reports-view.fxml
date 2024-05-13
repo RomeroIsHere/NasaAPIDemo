@@ -7,28 +7,53 @@
 <?import javafx.scene.layout.*?>
 
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.ReportsController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <BorderPane>
+
+    <top>
+        <VBox alignment="TOP_CENTER" spacing="15">
+            <Label text="Save Service" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
+            <Label/>
+        </VBox>
+
+
+    </top>
+
         <center>
-            <VBox>
+            <VBox alignment="TOP_CENTER" spacing="15">
+
+
+                <HBox spacing="10" alignment="TOP_CENTER">
+                    <Label text="Name File" styleClass="lbl,lbl-primary"/>
+                    <TextField fx:id="txt_nameFile"/>
+                </HBox>
+
                 <Button text="APOD" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onReportonClick">
                     <graphic>
-                        <FontIcon iconLiteral="fas-folder-open" iconSize="20" iconColor="white"/>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="20" iconColor="white"/>
                     </graphic>
                 </Button>
+
+                <Button text="Image and View" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onReportonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="20" iconColor="white"/>
+                    </graphic>
+                </Button>
+
+                <Button text="Mars" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onReportonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="20" iconColor="white"/>
+                    </graphic>
+                </Button>
+
+
             </VBox>
         </center>
-        <left>
-            <VBox>
-                <Label text="Hello i am">
 
-                </Label>
-            </VBox>
-        </left>
+
     </BorderPane>
 
-</AnchorPane>
