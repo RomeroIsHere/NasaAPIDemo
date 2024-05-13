@@ -24,7 +24,7 @@
         </center>
         <left>
             <VBox>
-                <Label text="Hello">
+                <Label text="Hello i am">
 
                 </Label>
             </VBox>
