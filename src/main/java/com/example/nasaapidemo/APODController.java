@@ -1,6 +1,5 @@
 package com.example.nasaapidemo;
 
-
 import com.example.nasaapidemo.Models.APOD;
 import com.example.nasaapidemo.database.Dao.APODDao;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ public class APODController implements Initializable {
     TableView a_tblAPOD;
     List<APOD> a_listAPOD=new ArrayList();
 
-    //APODDao a_APODDao=new APODDao();
+   // APODDao a_APODDao=new APODDao();
 
     @FXML
     public void m_onClickgetInformation() {
