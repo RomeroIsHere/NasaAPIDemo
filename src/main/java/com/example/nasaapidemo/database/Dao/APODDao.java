@@ -21,7 +21,7 @@ public class APODDao extends MySQLConnection{
     public List<APOD> findAll() {
 
         List<APOD> apodList = FXCollections.observableArrayList();
-        String query = "select * from APOD inner join MediaType";
+        String query = "select * from apod inner join media_type";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -30,13 +30,13 @@ public class APODDao extends MySQLConnection{
             {
                 APOD apod = new APOD();
                 apod.setId(rs.getInt("id"));
-                apod.setCveMedia(getCveMedia(rs.getInt("MediaType")));
-                apod.setDate(rs.getString("Date"));
-                apod.setExplanation(rs.getString("Explanation"));
-                apod.setUrl(rs.getString("Url"));
-                apod.setHdUrl(rs.getString("HdUrl"));
-                apod.setThumbnailUrl(rs.getString("ThumbnailUrl"));
-                apod.setServiceVersion(rs.getString("ServiceVersion"));
+                apod.setDate(rs.getString("date"));
+                apod.setExplanation(rs.getString("explanation"));
+                apod.setUrl(rs.getString("url"));
+                apod.setHdUrl(rs.getString("HDurl"));
+                apod.setThumbnailUrl(rs.getString("thumbnail_url"));
+                apod.setServiceVersion(rs.getString("service_version"));
+                apod.setCveMedia(getCveMedia(rs.getInt("cveMedia")));
 
 
                 apodList.add(apod);
@@ -50,18 +50,18 @@ public class APODDao extends MySQLConnection{
 
     public boolean save(APOD apod) {
         String query = "insert into apod " +
-                " (id, MediaType, Date, Explanation, Url, HdUrl, ThumbnailUrl, ServiceVersion)" +
+                " (id, date, explanation, url, HDurl, thumbnail_url, service_version, cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, apod.getId());
-            ps.setInt(2, apod.getCveMedia().getCveMedia());
-            ps.setString(3, apod.getDate());
-            ps.setString(4, apod.getExplanation());
-            ps.setString(5, apod.getUrl());
-            ps.setString(6, apod.getHdUrl());
-            ps.setString(7, apod.getThumbnailUrl());
-            ps.setString(8, apod.getServiceVersion());
+            ps.setString(2, apod.getDate());
+            ps.setString(3, apod.getExplanation());
+            ps.setString(4, apod.getUrl());
+            ps.setString(5, apod.getHdUrl());
+            ps.setString(6, apod.getThumbnailUrl());
+            ps.setString(7, apod.getServiceVersion());
+            ps.setInt(8, apod.getCveMedia().getCveMedia());
 
             ps.execute();
             return true;
@@ -73,7 +73,7 @@ public class APODDao extends MySQLConnection{
     }
 
     public boolean delete(int apod_id) {
-        String query = "delete from APOD where id = ?";
+        String query = "delete from apod where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,apod_id);
@@ -88,14 +88,14 @@ public class APODDao extends MySQLConnection{
 
     public MediaType getCveMedia(int idM)
     {
-        String query = "select * from MediaType where id ="+ idM;
+        String query = "select * from media_type where cveMedia ="+ idM;
 
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             MediaType media = new MediaType();
-            media.setCveMedia(rs.getInt("id"));
+            media.setCveMedia(rs.getInt("cveMedia"));
             return media;
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -22,7 +22,7 @@ public class ItemDao {
     public List<Item> findAll() {
 
         List<Item> itemList = FXCollections.observableArrayList();
-        String query = "select * from Item inner join MediaType";
+        String query = "select * from item inner join media_type";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -30,14 +30,14 @@ public class ItemDao {
             while (rs.next())
             {
                 Item item = new Item();
-                item.setIdNasa(rs.getInt("id"));
-                item.setCveMedia(getCveMedia(rs.getInt("MediaType")));
-                item.setHref(rs.getString("Href"));
-                item.setCenter(rs.getString("Center"));
-                item.setTitle(rs.getString("Title"));
-                item.setPhotographer(rs.getString("Photographer"));
-                item.setLocation(rs.getString("Location"));
-                item.setDateCreation(rs.getString("DateCreation"));
+                item.setIdNasa(rs.getInt("nasaId"));
+                item.setHref(rs.getString("href"));
+                item.setCenter(rs.getString("center"));
+                item.setTitle(rs.getString("title"));
+                item.setPhotographer(rs.getString("photographer"));
+                item.setLocation(rs.getString("location"));
+                item.setDateCreation(rs.getString("date_creation"));
+                item.setCveMedia(getCveMedia(rs.getInt("cveMedia")));
 
                 itemList.add(item);
             }
@@ -49,19 +49,19 @@ public class ItemDao {
     }
 
     public boolean save(Item item) {
-        String query = "insert into Item " +
-                " (id, MediaType, Href, Center, Title, Photographer, Location, DateCreation)" +
+        String query = "insert into item " +
+                " (nasaId, href, center, title, photographer, location, date_creation, cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, item.getIdNasa());
-            ps.setInt(2, item.getCveMedia().getCveMedia());
-            ps.setString(3, item.getHref());
-            ps.setString(4, item.getCenter());
-            ps.setString(5, item.getTitle());
-            ps.setString(6, item.getPhotographer());
-            ps.setString(7, item.getLocation());
-            ps.setString(8, item.getDateCreation());
+            ps.setString(2, item.getHref());
+            ps.setString(3, item.getCenter());
+            ps.setString(4, item.getTitle());
+            ps.setString(5, item.getPhotographer());
+            ps.setString(6, item.getLocation());
+            ps.setString(7, item.getDateCreation());
+            ps.setInt(8, item.getCveMedia().getCveMedia());
 
             ps.execute();
             return true;
@@ -73,7 +73,7 @@ public class ItemDao {
     }
 
     public boolean delete(int item_id) {
-        String query = "delete from Item where id = ?";
+        String query = "delete from item where nasaId = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,item_id);
@@ -88,14 +88,14 @@ public class ItemDao {
 
     public MediaType getCveMedia(int idM)
     {
-        String query = "select * from MediaType where id ="+ idM;
+        String query = "select * from media_type where cveMedia ="+ idM;
 
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             MediaType media = new MediaType();
-            media.setCveMedia(rs.getInt("id"));
+            media.setCveMedia(rs.getInt("cveMedia"));
             return media;
         } catch (SQLException e) {
             throw new RuntimeException(e);

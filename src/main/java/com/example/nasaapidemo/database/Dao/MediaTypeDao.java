@@ -16,7 +16,7 @@ public class MediaTypeDao {
     public List<MediaType> findAll() {
 
         List<MediaType> mediaList = FXCollections.observableArrayList();
-        String query = "select * from MediaType";
+        String query = "select * from media_type";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -24,8 +24,8 @@ public class MediaTypeDao {
             while (rs.next())
             {
                 MediaType media = new MediaType();
-                media.setCveMedia(rs.getInt("CveMedia"));
-                media.setName(rs.getString("Name"));
+                media.setCveMedia(rs.getInt("cveMedia"));
+                media.setName(rs.getString("name"));
 
                 mediaList.add(media);
             }
@@ -37,7 +37,7 @@ public class MediaTypeDao {
     }
 
     public boolean save(MediaType media) {
-        String query = "insert into MediaType " +
+        String query = "insert into media_type " +
                 " (cveMedia,name)" +
                 " values (?,?)";
         try {
@@ -55,7 +55,7 @@ public class MediaTypeDao {
     }
 
     public boolean delete(int media) {
-        String query = "delete from MediaType where cveMedia = "+media;
+        String query = "delete from media_type where cveMedia = "+media;
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,media);

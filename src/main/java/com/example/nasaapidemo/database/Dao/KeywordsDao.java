@@ -20,7 +20,7 @@ public class KeywordsDao {
     public List<Keywords> findAll() {
 
         List<Keywords> keyList = FXCollections.observableArrayList();
-        String query = "select * from Keywords";
+        String query = "select * from keywords";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -28,7 +28,7 @@ public class KeywordsDao {
             while (rs.next())
             {
                 Keywords key = new Keywords();
-                key.setName(rs.getString("Name"));
+                key.setName(rs.getString("name"));
 
                 keyList.add(key);
             }
@@ -40,7 +40,7 @@ public class KeywordsDao {
     }
 
     public boolean save(Keywords key) {
-        String query = "insert into Keywords " +
+        String query = "insert into keywords " +
                 " (name)" +
                 " values (?)";
         try {
@@ -57,7 +57,7 @@ public class KeywordsDao {
     }
 
     public boolean delete(String key) {
-        String query = "delete from Keyword where name = "+"'"+key+"'";
+        String query = "delete from keyword where name = "+"'"+key+"'";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1,key);

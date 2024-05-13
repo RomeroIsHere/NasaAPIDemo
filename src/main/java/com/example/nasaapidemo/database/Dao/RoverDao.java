@@ -19,7 +19,7 @@ public class RoverDao {
     public List<Rover> findAll() {
 
         List<Rover> roverList = FXCollections.observableArrayList();
-        String query = "select * from Rover inner join status";
+        String query = "select * from rover inner join status";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -28,14 +28,13 @@ public class RoverDao {
             {
                 Rover rover = new Rover();
                 rover.setIdRover(rs.getInt("id"));
-                rover.setTotalPhotos(rs.getInt("TotalPhotos"));
-                rover.setMaxSol(rs.getInt("MaxSol"));
-                rover.setIdStatus(getStatus(rs.getInt("Status")));
-                rover.setName(rs.getString("Name"));
-                rover.setLandingDate(rs.getString("LangingDate"));
-                rover.setLaunchDate(rs.getString("LaunchDate"));
-                rover.setMaxDate(rs.getString("MaxDate"));
-
+                rover.setName(rs.getString("name"));
+                rover.setTotalPhotos(rs.getInt("total_photos"));
+                rover.setLandingDate(rs.getString("landing_date"));
+                rover.setLaunchDate(rs.getString("launch_date"));
+                rover.setMaxSol(rs.getInt("max_sol"));
+                rover.setMaxDate(rs.getString("max_date"));
+                rover.setIdStatus(getStatus(rs.getInt("idStatus")));
 
                 roverList.add(rover);
             }
@@ -47,19 +46,19 @@ public class RoverDao {
     }
 
     public boolean save(Rover rover) {
-        String query = "insert into Rover " +
-                " (idRover, TotalPhotos, maxSol, idStatus, name, landingDate, launchDate, maxDate)" +
+        String query = "insert into rover " +
+                " (id, name, total_photos, landing_date, launch_date, max_sol, max_date, idStatus)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, rover.getIdRover());
-            ps.setInt(2, rover.getTotalPhotos());
-            ps.setInt(3, rover.getMaxSol());
-            ps.setInt(4, rover.getIdStatus().getIdStatus());
-            ps.setString(5, rover.getName());
-            ps.setString(6, rover.getLandingDate());
-            ps.setString(7, rover.getLaunchDate());
-            ps.setString(8, rover.getMaxDate());
+            ps.setString(2, rover.getName());
+            ps.setInt(3, rover.getTotalPhotos());
+            ps.setString(4, rover.getLandingDate());
+            ps.setString(5, rover.getLaunchDate());
+            ps.setInt(6, rover.getMaxSol());
+            ps.setString(7, rover.getMaxDate());
+            ps.setInt(8, rover.getIdStatus().getIdStatus());
 
             ps.execute();
             return true;
@@ -71,7 +70,7 @@ public class RoverDao {
     }
 
     public boolean delete(int status_id) {
-        String query = "delete from Status where id = ?";
+        String query = "delete from rover where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,status_id);
@@ -86,7 +85,7 @@ public class RoverDao {
 
     public Status getStatus(int idS)
     {
-        String query = "select * from Status where idStatus ="+ idS;
+        String query = "select * from status where id="+ idS;
 
         try {
             Statement statement = conn.createStatement();

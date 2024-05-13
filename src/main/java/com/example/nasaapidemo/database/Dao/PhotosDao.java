@@ -16,7 +16,7 @@ public class PhotosDao {
     public List<Photos> findAll() {
 
         List<Photos> photosList = FXCollections.observableArrayList();
-        String query = "select * from Photos inner join camera inner join rover";
+        String query = "select * from photos inner join camera inner join rover";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -26,10 +26,10 @@ public class PhotosDao {
                 Photos photos = new Photos();
                 photos.setId(rs.getInt("id"));
                 photos.setSol(rs.getInt("sol"));
+                photos.setEarthDate(rs.getString("earth_date"));
+                photos.setImageSrc(rs.getString("image_src"));
                 photos.setIdCamera(getCamera(rs.getInt("IdCamera")));
                 photos.setIdRover(getRover(rs.getInt("IdRover")));
-                photos.setImageSrc(rs.getString("imageSrc"));
-                photos.setEarthDate(rs.getString("EarthDate"));
 
                 photosList.add(photos);
             }
@@ -41,17 +41,17 @@ public class PhotosDao {
     }
 
     public boolean save(Photos photos) {
-        String query = "insert into Photos " +
-                " (id,sol,idCamera,idRover,imageSrc,earthDate)" +
+        String query = "insert into photos " +
+                " (id,sol,earth_date,image_src,idCamera,idRover)" +
                 " values (?, ?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, photos.getId());
             ps.setInt(2, photos.getSol());
-            ps.setInt(3, photos.getIdCamera().getId());
-            ps.setInt(4, photos.getIdRover().getIdRover());
-            ps.setString(5, photos.getImageSrc());
-            ps.setString(6, photos.getEarthDate());
+            ps.setString(3, photos.getEarthDate());
+            ps.setString(4, photos.getImageSrc());
+            ps.setInt(5, photos.getIdCamera().getId());
+            ps.setInt(6, photos.getIdRover().getIdRover());
 
             ps.execute();
             return true;
@@ -63,7 +63,7 @@ public class PhotosDao {
     }
 
     public boolean delete(int id) {
-        String query = "delete from Photos where id = "+ id;
+        String query = "delete from photos where id = "+ id;
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,id);
@@ -78,7 +78,7 @@ public class PhotosDao {
 
     public Camera getCamera(int idc)
     {
-        String query = "select * from camera where idNasa ="+ idc;
+        String query = "select * from camera where id ="+ idc;
 
         try {
             Statement statement = conn.createStatement();
@@ -95,14 +95,14 @@ public class PhotosDao {
 
     public Rover getRover(int idr)
     {
-        String query = "select * from Rover where id ="+ idr;
+        String query = "select * from rover where id ="+ idr;
 
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             Rover rover = new Rover();
-            rover.setIdRover(rs.getInt("idRover"));
+            rover.setIdRover(rs.getInt("id"));
             return rover;
         } catch (SQLException e) {
             throw new RuntimeException(e);

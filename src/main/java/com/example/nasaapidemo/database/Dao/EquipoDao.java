@@ -20,7 +20,7 @@ public class EquipoDao {
     public List<Equipo> findAll() {
 
         List<Equipo> equipoList = FXCollections.observableArrayList();
-        String query = "select * from Equipo inner join camera inner join rover";
+        String query = "select * from equipo inner join camera inner join rover";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -58,12 +58,12 @@ public class EquipoDao {
         return false;
     }
 
-    public boolean delete(int nasa_id, String key) {
-        String query = "delete from autos where idNasa = "+nasa_id+"and "+"name= "+"'"+key+"'";
+    public boolean delete(int camera, int rover) {
+        String query = "delete from equipo where idCamera = "+camera+"and idRover = "+rover;
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1,nasa_id);
-            ps.setString(2,key);
+            ps.setInt(1,camera);
+            ps.setInt(2,rover);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -75,7 +75,7 @@ public class EquipoDao {
 
     public Camera getCamera(int idc)
     {
-        String query = "select * from camera where idNasa ="+ idc;
+        String query = "select * from camera where id ="+ idc;
 
         try {
             Statement statement = conn.createStatement();
@@ -92,14 +92,14 @@ public class EquipoDao {
 
     public Rover getRover(int idr)
     {
-        String query = "select * from Rover where id ="+ idr;
+        String query = "select * from rover where id ="+ idr;
 
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             Rover rover = new Rover();
-            rover.setIdRover(rs.getInt("idRover"));
+            rover.setIdRover(rs.getInt("id"));
             return rover;
         } catch (SQLException e) {
             throw new RuntimeException(e);

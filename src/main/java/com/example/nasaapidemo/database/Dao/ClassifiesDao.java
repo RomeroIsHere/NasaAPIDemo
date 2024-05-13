@@ -20,7 +20,7 @@ public class ClassifiesDao {
     public List<Classifies> findAll() {
 
         List<Classifies> cassList = FXCollections.observableArrayList();
-        String query = "select * from Classifies inner join Item inner join Keywords";
+        String query = "select * from classifies inner join item inner join keywords";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -28,8 +28,8 @@ public class ClassifiesDao {
             while (rs.next())
             {
                 Classifies classi = new Classifies();
-                classi.setIdNasa(getItem(rs.getInt("IdNasa")));
                 classi.setName(getKey(rs.getString("name")));
+                classi.setIdNasa(getItem(rs.getInt("nasaId")));
 
                 cassList.add(classi);
             }
@@ -42,12 +42,12 @@ public class ClassifiesDao {
 
     public boolean save(Classifies classifies) {
         String query = "insert into clssifies " +
-                " (idNasa,name)" +
+                " (name,nasaId)" +
                 " values (?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, classifies.getIdNasa().getIdNasa());
-            ps.setString(2, classifies.getName().getName());
+            ps.setString(1, classifies.getName().getName());
+            ps.setInt(2, classifies.getIdNasa().getIdNasa());
 
             ps.execute();
             return true;
@@ -59,11 +59,11 @@ public class ClassifiesDao {
     }
 
     public boolean delete(int nasa_id, String key) {
-        String query = "delete from autos where idNasa = "+nasa_id+"and "+"name= "+"'"+key+"'";
+        String query = "delete from classifies where name = "+"'"+key +"'"+" and nasa_id= "+nasa_id;
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1,nasa_id);
-            ps.setString(2,key);
+            ps.setString(1,key);
+            ps.setInt(2,nasa_id);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -75,14 +75,14 @@ public class ClassifiesDao {
 
     public Item getItem(int idI)
     {
-        String query = "select * from Item where idNasa ="+ idI;
+        String query = "select * from item where nasaId ="+ idI;
 
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             Item item = new Item();
-            item.setIdNasa(rs.getInt("id"));
+            item.setIdNasa(rs.getInt("nasaId"));
             return item;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -92,7 +92,7 @@ public class ClassifiesDao {
 
     public Keywords getKey(String key)
     {
-        String query = "select * from MediaType where id ="+"'"+key+"'";
+        String query = "select * from keywords where name ="+"'"+key+"'";
 
         try {
             Statement statement = conn.createStatement();

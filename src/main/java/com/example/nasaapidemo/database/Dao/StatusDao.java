@@ -17,7 +17,7 @@ public class StatusDao {
     public List<Status> findAll() {
 
         List<Status> statusList = FXCollections.observableArrayList();
-        String query = "select * from Status";
+        String query = "select * from status";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -26,7 +26,7 @@ public class StatusDao {
             {
                 Status status = new Status();
                 status.setIdStatus(rs.getInt("id"));
-                status.setStatus(rs.getString("Nombre"));
+                status.setStatus(rs.getString("Status"));
 
                 statusList.add(status);
             }
@@ -39,7 +39,7 @@ public class StatusDao {
 
     public boolean save(Status status) {
         String query = "insert into Status " +
-                " (idSatuts, status)" +
+                " (id, status)" +
                 " values (?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -56,7 +56,7 @@ public class StatusDao {
     }
 
     public boolean delete(int status_id) {
-        String query = "delete from Status where id = ?";
+        String query = "delete from status where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,status_id);

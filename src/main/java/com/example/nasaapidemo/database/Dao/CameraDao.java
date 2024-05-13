@@ -22,7 +22,7 @@ public class CameraDao {
     public List<Camera> findAll() {
 
         List<Camera> cameraList = FXCollections.observableArrayList();
-        String query = "select * from Camera";
+        String query = "select * from camera";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -31,8 +31,8 @@ public class CameraDao {
             {
                 Camera camera = new Camera();
                 camera.setId(rs.getInt("id"));
-                camera.setNombre(rs.getString("Nombre"));
-                camera.setFullName(rs.getString("FullName"));
+                camera.setNombre(rs.getString("name"));
+                camera.setFullName(rs.getString("full_name"));
 
                 cameraList.add(camera);
             }
@@ -45,7 +45,7 @@ public class CameraDao {
 
     public boolean save(Camera camera) {
         String query = "insert into camera " +
-                " (id, Nombre, FullNamee)" +
+                " (id, name, full_name)" +
                 " values (?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
