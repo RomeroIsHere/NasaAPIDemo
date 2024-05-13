@@ -4,36 +4,60 @@ import com.example.nasaapidemo.Models.APOD;
 import com.example.nasaapidemo.Models.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginController {
-    @FXML
-    private Label welcomeText;
 
-    List<APOD> a_apods=new ArrayList();
     @FXML
-    protected void onHelloButtonClick() throws IOException {
-        welcomeText.setText("Welcome to JavaFX Application!");
-        m_temporal();
-        APODItext v_nuevo=new APODItext();
-        v_nuevo.createPdf("results/temp1.pdf",a_apods);
+    private void onAPODonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("APOD");
+        stage.setScene(scene);
+        stage.show();
     }
 
+    @FXML
+    private void onReportonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Reports-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Reports");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-    private void m_temporal(){
-        APOD v_apod=new APOD();
-        v_apod.setDate("2024-05-11");
-        v_apod.setHdUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_3216.jpg");
-        v_apod.setCveMedia(new MediaType());
-        v_apod.getCveMedia().setName("image");
-        v_apod.setServiceVersion("v1");
-        v_apod.setUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_960.jpg");
-        a_apods.add(v_apod);
-        System.out.println(v_apod.getExplanation());
+    @FXML
+    private void onIVLonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Images and Videos Library");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void onMarsonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Mars");
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
