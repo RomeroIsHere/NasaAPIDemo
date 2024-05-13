@@ -1,15 +1,18 @@
 package com.example.nasaapidemo.Models;
 
+import java.util.Date;
+
 public class Rover {
 
     private int idRover, totalPhotos, maxSol;
     private Status idStatus;
-    private String name, landingDate, launchDate, maxDate;
+    private String name;
+    private Date landingDate, launchDate, maxDate;
 
     public Rover() {
     }
 
-    public Rover(int idRover, int totalPhotos, int maxSol, Status idStatus, String name, String landingDate, String launchDate, String maxDate) {
+    public Rover(int idRover, int totalPhotos, int maxSol, Status idStatus, String name, Date landingDate, Date launchDate, Date maxDate) {
         this.idRover = idRover;
         this.totalPhotos = totalPhotos;
         this.maxSol = maxSol;
@@ -60,27 +63,27 @@ public class Rover {
         this.name = name;
     }
 
-    public String getLandingDate() {
+    public Date getLandingDate() {
         return landingDate;
     }
 
-    public void setLandingDate(String landingDate) {
+    public void setLandingDate(Date landingDate) {
         this.landingDate = landingDate;
     }
 
-    public String getLaunchDate() {
+    public Date getLaunchDate() {
         return launchDate;
     }
 
-    public void setLaunchDate(String launchDate) {
+    public void setLaunchDate(Date launchDate) {
         this.launchDate = launchDate;
     }
 
-    public String getMaxDate() {
+    public Date getMaxDate() {
         return maxDate;
     }
 
-    public void setMaxDate(String maxDate) {
+    public void setMaxDate(Date maxDate) {
         this.maxDate = maxDate;
     }
 }
