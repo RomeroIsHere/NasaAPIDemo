@@ -1,7 +1,6 @@
 package com.example.nasaapidemo;
 
 import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.database.Dao.APODDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class APODController implements Initializable {
+public class IVLController implements Initializable {
     @FXML
     TableView a_tblAPOD;
     List<APOD> a_listAPOD=new ArrayList();
