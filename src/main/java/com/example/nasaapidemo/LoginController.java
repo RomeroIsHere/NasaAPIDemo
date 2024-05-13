@@ -38,4 +38,15 @@ public class LoginController {
         stage.show();
     }
 
+    @FXML
+    private void onIVLonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Images and Videos Library");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

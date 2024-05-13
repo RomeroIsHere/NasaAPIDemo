@@ -20,7 +20,7 @@
                         <FontIcon iconLiteral="fas-folder-open" iconSize="20" iconColor="white"/>
                     </graphic>
                 </Button>
-                <Button text="IVL" contentDisplay="TOP" styleClass="btn, btn-success">
+                <Button text="IVL" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick">
                     <graphic>
                         <FontIcon iconLiteral="fas-camera-retro" iconSize="20" iconColor="white"/>
                     </graphic>
