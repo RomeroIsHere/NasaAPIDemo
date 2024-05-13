@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 
@@ -15,7 +16,8 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello! i Know you!");
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("NASA");
         stage.setScene(scene);
         stage.show();
     }
