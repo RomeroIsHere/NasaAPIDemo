@@ -5,12 +5,34 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.nasaapidemo.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <BorderPane>
+        <center>
+            <VBox alignment="CENTER" spacing="10">
+                <Button text="APOD" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-folder-open" iconSize="20" iconColor="white"/>
+                    </graphic>
+                </Button>
+                <Button text="IVL" contentDisplay="TOP" styleClass="btn, btn-success">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-camera-retro" iconSize="20" iconColor="white"/>
+                    </graphic>
+                </Button>
+                <Button text="Reports" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReportonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="20" iconColor="white"/>
+                    </graphic>
+                </Button>
+            </VBox>
+        </center>
+    </BorderPane>
 </VBox>
