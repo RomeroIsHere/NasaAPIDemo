@@ -44,11 +44,6 @@
                         </cellValueFactory>
                     </TableColumn>
 
-                    <TableColumn  text="date">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="date"/>
-                        </cellValueFactory>
-                    </TableColumn>
 
                     <TableColumn  text="url">
                         <cellValueFactory>
