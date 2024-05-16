@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +84,8 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
 
     private Map<parameters,String> buildMapFromModel(APOD tao){
         Map<parameters,String> querySet=mapFromAPIkey();
-        querySet.put(parameters.date, tao.getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        querySet.put(parameters.date, formatter.format(tao.getDate()));
         return querySet;
     }
     private Map<parameters,String> mapFromAPIkey(){
