@@ -1,17 +1,21 @@
 package com.example.nasaapidemo.Models;
 
+import java.util.Date;
+
 public class APOD {
 
     private int id;
 
     private MediaType cveMedia;
 
-    private String date, explanation, url, hdUrl, thumbnailUrl, serviceVersion;
+    private Date date;
+
+    private String explanation, url, hdUrl, thumbnailUrl, serviceVersion;
 
     public APOD() {
     }
 
-    public APOD(int id, MediaType cveMedia, String date, String explanation, String url, String hdUrl, String thumbnailUrl, String serviceVersion) {
+    public APOD(int id, MediaType cveMedia, Date date, String explanation, String url, String hdUrl, String thumbnailUrl, String serviceVersion) {
         this.id = id;
         this.cveMedia = cveMedia;
         this.date = date;
@@ -38,13 +42,11 @@ public class APOD {
         this.cveMedia = cveMedia;
     }
 
-    //Esta es una abstraccion Peligrosa, de Preferencia usar un Valor tipo Date para generar la Fecha
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
