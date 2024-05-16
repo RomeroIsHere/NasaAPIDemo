@@ -38,9 +38,11 @@ public class APOD {
         this.cveMedia = cveMedia;
     }
 
+    //Esta es una abstraccion Peligrosa, de Preferencia usar un Valor tipo Date para generar la Fecha
     public String getDate() {
         return date;
     }
+
 
     public void setDate(String date) {
         this.date = date;
