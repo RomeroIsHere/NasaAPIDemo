@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.nasaapidemo.APODController"
+            fx:controller="com.example.nasaapidemo.MarsController"
             prefHeight="400.0" prefWidth="600.0">
 
     <top>
         <VBox spacing="15" alignment="CENTER" >
-            <Label text="APOD" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
+            <Label text="Mars" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
 
             <HBox alignment="CENTER" spacing="10">
                 <Button text="Get Information" styleClass="btn,btn-primary" onAction="#m_onClickgetInformation"/>
@@ -38,50 +35,39 @@
                     </TableColumn>
 
 
-                    <TableColumn  text="date">
+                    <TableColumn  text="Sol">
                         <cellValueFactory>
                             <PropertyValueFactory property="date"/>
                         </cellValueFactory>
                     </TableColumn>
 
+                    <TableColumn  text="Earth date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date"/>
+                        </cellValueFactory>
+                    </TableColumn>
 
-                    <TableColumn  text="url">
+                    <TableColumn  text="Image src">
                         <cellValueFactory>
                             <PropertyValueFactory property="url"/>
                         </cellValueFactory>
                     </TableColumn>
 
 
-                    <TableColumn  text="hdUrl">
+                    <TableColumn  text="Id Camera">
                         <cellValueFactory>
                             <PropertyValueFactory property="hdUrl"/>
                         </cellValueFactory>
                     </TableColumn>
 
 
-                    <TableColumn  text="thumbnailUrl">
+                    <TableColumn  text="Id Rover">
                         <cellValueFactory>
                             <PropertyValueFactory property="thumbnailUrl"/>
                         </cellValueFactory>
                     </TableColumn>
-
-                    <TableColumn  text="serviceVersion">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="serviceVersion"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <TableColumn  text="cveMedia">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="cveMedia"/>
-                        </cellValueFactory>
-                    </TableColumn>
                 </columns>
-
             </TableView>
-
         </VBox>
     </center>
-
-
 </BorderPane>

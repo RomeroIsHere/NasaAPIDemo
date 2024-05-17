@@ -1,6 +1,5 @@
 package com.example.nasaapidemo;
 
-import com.example.nasaapidemo.Models.APOD;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

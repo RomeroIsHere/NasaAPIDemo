@@ -25,7 +25,7 @@
                         <FontIcon iconLiteral="fas-camera-retro" iconSize="20" iconColor="white"/>
                     </graphic>
                 </Button>
-                <Button text="Mars" contentDisplay="TOP" styleClass="btn, btn-warning">
+                <Button text="Mars" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick">
                     <graphic>
                         <FontIcon iconLiteral="fas-globe-americas" iconSize="20" iconColor="white"/>
                     </graphic>

@@ -14,7 +14,7 @@ module com.example.nasaapidemo {
     requires org.apache.logging.log4j;
     requires io;
     requires java.sql;
-
+    requires com.google.gson;
 
     opens com.example.nasaapidemo to javafx.fxml;
     exports com.example.nasaapidemo;

@@ -1,16 +1,19 @@
 package com.example.nasaapidemo.Models;
 
+import java.util.Date;
+
 public class Photos {
 
     private int id, sol;
     private Camera idCamera;
     private Rover idRover;
-    private String imageSrc, earthDate;
+    private String imageSrc;
+    private Date earthDate;
 
     public Photos() {
     }
 
-    public Photos(int id, int sol, Camera idCamera, Rover idRover, String imageSrc, String earthDate) {
+    public Photos(int id, int sol, Camera idCamera, Rover idRover, String imageSrc, Date earthDate) {
         this.id = id;
         this.sol = sol;
         this.idCamera = idCamera;
@@ -59,11 +62,11 @@ public class Photos {
         this.imageSrc = imageSrc;
     }
 
-    public String getEarthDate() {
+    public Date getEarthDate() {
         return earthDate;
     }
 
-    public void setEarthDate(String earthDate) {
+    public void setEarthDate(Date earthDate) {
         this.earthDate = earthDate;
     }
 }

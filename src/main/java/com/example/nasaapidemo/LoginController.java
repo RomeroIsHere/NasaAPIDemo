@@ -49,4 +49,15 @@ public class LoginController {
         stage.show();
     }
 
+    @FXML
+    private void onMarsonClick() throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Mars");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
