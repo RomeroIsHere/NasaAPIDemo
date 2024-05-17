@@ -20,7 +20,7 @@ ext {
 sourceCompatibility = '21'
 targetCompatibility = '21'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
@@ -41,6 +41,7 @@ dependencies {
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
     implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.1'
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+    implementation 'com.google.code.gson:gson:2.10.1'
 
 
     //*Itext

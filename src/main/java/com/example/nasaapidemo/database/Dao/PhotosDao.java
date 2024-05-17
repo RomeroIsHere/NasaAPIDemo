@@ -1,9 +1,11 @@
 package com.example.nasaapidemo.database.Dao;
 
 import com.example.nasaapidemo.Models.*;
+import com.example.nasaapidemo.apicontroller.APODConsumer;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,7 @@ public class PhotosDao {
                 Photos photos = new Photos();
                 photos.setId(rs.getInt("id"));
                 photos.setSol(rs.getInt("sol"));
-                photos.setEarthDate(rs.getString("earth_date"));
+                photos.setEarthDate(rs.getDate("earth_date"));
                 photos.setImageSrc(rs.getString("image_src"));
                 photos.setIdCamera(getCamera(rs.getInt("IdCamera")));
                 photos.setIdRover(getRover(rs.getInt("IdRover")));
@@ -45,10 +47,11 @@ public class PhotosDao {
                 " (id,sol,earth_date,image_src,idCamera,idRover)" +
                 " values (?, ?,?,?,?,?)";
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, photos.getId());
             ps.setInt(2, photos.getSol());
-            ps.setString(3, photos.getEarthDate());
+            ps.setString(3, formatter.format(photos.getEarthDate()));
             ps.setString(4, photos.getImageSrc());
             ps.setInt(5, photos.getIdCamera().getId());
             ps.setInt(6, photos.getIdRover().getIdRover());

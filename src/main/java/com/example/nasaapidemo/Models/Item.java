@@ -1,17 +1,21 @@
 package com.example.nasaapidemo.Models;
 
+import java.util.Date;
+
 public class Item {
 
     private int idNasa;
 
     private MediaType cveMedia;
 
-    private String href, center, title, photographer, location, dateCreation;
+    private String href, center, title, photographer, location;
+
+    private Date dateCreation;
 
     public Item() {
     }
 
-    public Item(int idNasa, MediaType cveMedia, String href, String center, String title, String photographer, String location, String dateCreation) {
+    public Item(int idNasa, MediaType cveMedia, String href, String center, String title, String photographer, String location, Date dateCreation) {
         this.idNasa = idNasa;
         this.cveMedia = cveMedia;
         this.href = href;
@@ -78,11 +82,11 @@ public class Item {
         this.location = location;
     }
 
-    public String getDateCreation() {
+    public Date getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(String dateCreation) {
+    public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
     }
 }

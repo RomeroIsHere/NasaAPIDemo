@@ -6,6 +6,7 @@ import com.example.nasaapidemo.Models.MediaType;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class ItemDao {
                 item.setTitle(rs.getString("title"));
                 item.setPhotographer(rs.getString("photographer"));
                 item.setLocation(rs.getString("location"));
-                item.setDateCreation(rs.getString("date_creation"));
+                item.setDateCreation(rs.getDate("date_creation"));
                 item.setCveMedia(getCveMedia(rs.getInt("cveMedia")));
 
                 itemList.add(item);
@@ -53,6 +54,8 @@ public class ItemDao {
                 " (nasaId, href, center, title, photographer, location, date_creation, cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, item.getIdNasa());
             ps.setString(2, item.getHref());
@@ -60,7 +63,7 @@ public class ItemDao {
             ps.setString(4, item.getTitle());
             ps.setString(5, item.getPhotographer());
             ps.setString(6, item.getLocation());
-            ps.setString(7, item.getDateCreation());
+            ps.setString(7, formatter.format(item.getDateCreation()));
             ps.setInt(8, item.getCveMedia().getCveMedia());
 
             ps.execute();

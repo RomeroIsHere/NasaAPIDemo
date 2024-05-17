@@ -4,9 +4,11 @@ import com.example.nasaapidemo.Models.APOD;
 import com.example.nasaapidemo.Models.MediaType;
 import com.example.nasaapidemo.Models.Rover;
 import com.example.nasaapidemo.Models.Status;
+import com.example.nasaapidemo.apicontroller.APODConsumer;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +32,10 @@ public class RoverDao {
                 rover.setIdRover(rs.getInt("id"));
                 rover.setName(rs.getString("name"));
                 rover.setTotalPhotos(rs.getInt("total_photos"));
-                rover.setLandingDate(rs.getString("landing_date"));
-                rover.setLaunchDate(rs.getString("launch_date"));
+                rover.setLandingDate(rs.getDate("landing_date"));
+                rover.setLaunchDate(rs.getDate("launch_date"));
                 rover.setMaxSol(rs.getInt("max_sol"));
-                rover.setMaxDate(rs.getString("max_date"));
+                rover.setMaxDate(rs.getDate("max_date"));
                 rover.setIdStatus(getStatus(rs.getInt("idStatus")));
 
                 roverList.add(rover);
@@ -50,14 +52,15 @@ public class RoverDao {
                 " (id, name, total_photos, landing_date, launch_date, max_sol, max_date, idStatus)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, rover.getIdRover());
             ps.setString(2, rover.getName());
             ps.setInt(3, rover.getTotalPhotos());
-            ps.setString(4, rover.getLandingDate());
-            ps.setString(5, rover.getLaunchDate());
+            ps.setString(4, formatter.format(rover.getLandingDate()));
+            ps.setString(5, formatter.format(rover.getLaunchDate()));
             ps.setInt(6, rover.getMaxSol());
-            ps.setString(7, rover.getMaxDate());
+            ps.setString(7, formatter.format(rover.getMaxDate()));
             ps.setInt(8, rover.getIdStatus().getIdStatus());
 
             ps.execute();
