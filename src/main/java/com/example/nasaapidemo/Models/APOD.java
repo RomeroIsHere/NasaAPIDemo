@@ -1,21 +1,19 @@
 package com.example.nasaapidemo.Models;
 
-import java.util.Date;
-
 public class APOD {
 
     private int id;
 
     private MediaType cveMedia;
 
-    private Date date;
+    private String date;
 
     private String explanation, url, hdUrl, thumbnailUrl, serviceVersion;
 
     public APOD() {
     }
 
-    public APOD(int id, MediaType cveMedia, Date date, String explanation, String url, String hdUrl, String thumbnailUrl, String serviceVersion) {
+    public APOD(int id, MediaType cveMedia, String date, String explanation, String url, String hdUrl, String thumbnailUrl, String serviceVersion) {
         this.id = id;
         this.cveMedia = cveMedia;
         this.date = date;
@@ -42,11 +40,11 @@ public class APOD {
         this.cveMedia = cveMedia;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
