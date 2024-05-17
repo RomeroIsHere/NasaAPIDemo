@@ -3,10 +3,12 @@ package com.example.nasaapidemo.database.Dao;
 
 import com.example.nasaapidemo.Models.APOD;
 import com.example.nasaapidemo.Models.MediaType;
+import com.example.nasaapidemo.apicontroller.APODConsumer;
 import com.example.nasaapidemo.database.MySQLConnection;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +32,7 @@ public class APODDao extends MySQLConnection{
             {
                 APOD apod = new APOD();
                 apod.setId(rs.getInt("id"));
-                apod.setDate(rs.getString("date"));
+                apod.setDate(rs.getDate("date"));
                 apod.setExplanation(rs.getString("explanation"));
                 apod.setUrl(rs.getString("url"));
                 apod.setHdUrl(rs.getString("HDurl"));
@@ -52,10 +54,12 @@ public class APODDao extends MySQLConnection{
         String query = "insert into apod " +
                 " (id, date, explanation, url, HDurl, thumbnail_url, service_version, cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, apod.getId());
-            ps.setString(2, apod.getDate());
+            ps.setString(2, formatter.format(apod.getDate()));
             ps.setString(3, apod.getExplanation());
             ps.setString(4, apod.getUrl());
             ps.setString(5, apod.getHdUrl());
