@@ -25,6 +25,16 @@ public class APOD {
         this.serviceVersion = serviceVersion;
     }
 
+    @Override
+    public String toString() {
+
+        return id +
+                date +
+                title +
+                explanation +
+                url;
+    }
+
     public int getId() {
         return id;
     }

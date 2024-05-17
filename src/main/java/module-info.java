@@ -18,4 +18,5 @@ module com.example.nasaapidemo {
 
     opens com.example.nasaapidemo to javafx.fxml;
     exports com.example.nasaapidemo;
+    opens com.example.nasaapidemo.Models to com.google.gson;
 }

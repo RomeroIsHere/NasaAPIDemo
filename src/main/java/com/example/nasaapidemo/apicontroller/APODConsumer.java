@@ -32,7 +32,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         return parseJSON(result);
     }
 
-    public APOD getByDateString(String date){
+    public APOD getByDateString(String date){//yyyy-mm-dd
         Map<parameters,String> queryMap =mapFromAPIkey();
         queryMap.put(parameters.date,date);
 
@@ -42,7 +42,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
                 .build());
         return parseJSON(result);
     }
-    public APOD getByDateRange(String startDate){
+    public APOD[] getByDateRange(String startDate){
         Map<parameters,String> queryMap =mapFromAPIkey();
         queryMap.put(parameters.start_date,startDate);
 
@@ -50,9 +50,9 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
                 .build());
-        return parseJSON(result);
+        return parseJSONList(result,1);
     }
-    public APOD getByDateRange(String startDate,String endDate){
+    public APOD[] getByDateRange(String startDate,String endDate){
         Map<parameters,String> queryMap =mapFromAPIkey();
         queryMap.put(parameters.start_date,startDate);
         queryMap.put(parameters.end_date,endDate);
@@ -60,7 +60,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
                 .build());
-        return parseJSON(result);
+        return parseJSONList(result,1);
     }
     public APOD[] getRandomByCount(int count){
         Map<parameters,String> queryMap =mapFromAPIkey();
