@@ -1,4 +1,6 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MAPOD;
+
+import com.example.nasaapidemo.Models.MediaType;
 
 public class APOD {
 
@@ -23,6 +25,16 @@ public class APOD {
         this.hdUrl = hdUrl;
         this.thumbnailUrl = thumbnailUrl;
         this.serviceVersion = serviceVersion;
+    }
+
+    @Override
+    public String toString() {
+
+        return id +
+                date +
+                title +
+                explanation +
+                url;
     }
 
     public int getId() {

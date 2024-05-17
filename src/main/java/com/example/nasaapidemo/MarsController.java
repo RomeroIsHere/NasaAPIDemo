@@ -1,6 +1,6 @@
 package com.example.nasaapidemo;
 
-import com.example.nasaapidemo.Models.APOD;
+import com.example.nasaapidemo.Models.MAPOD.APOD;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;

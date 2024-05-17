@@ -1,4 +1,7 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MIVL;
+
+import com.example.nasaapidemo.Models.MediaType;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -10,6 +13,7 @@ public class Item {
 
     private String href, center, title, photographer, location;
 
+    @SerializedName("date_created")
     private Date dateCreation;
 
     public Item() {

@@ -1,6 +1,8 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.*;
+import com.example.nasaapidemo.Models.MIVL.Classifies;
+import com.example.nasaapidemo.Models.MIVL.Item;
+import com.example.nasaapidemo.Models.MIVL.Keywords;
 import javafx.collections.FXCollections;
 
 import java.sql.*;

@@ -1,12 +1,10 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.Camera;
-import com.example.nasaapidemo.Models.Status;
+import com.example.nasaapidemo.Models.MMars.Status;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.nasaapidemo.database.MySQLConnection.getConnection;
 

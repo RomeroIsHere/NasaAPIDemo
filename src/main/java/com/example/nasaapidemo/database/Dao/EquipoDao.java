@@ -1,6 +1,8 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.*;
+import com.example.nasaapidemo.Models.MMars.Camera;
+import com.example.nasaapidemo.Models.MMars.Equipo;
+import com.example.nasaapidemo.Models.MMars.Rover;
 import javafx.collections.FXCollections;
 
 import java.sql.*;

@@ -1,13 +1,10 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.Models.Keywords;
-import com.example.nasaapidemo.Models.MediaType;
+import com.example.nasaapidemo.Models.MIVL.Keywords;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.nasaapidemo.database.MySQLConnection.getConnection;
 
