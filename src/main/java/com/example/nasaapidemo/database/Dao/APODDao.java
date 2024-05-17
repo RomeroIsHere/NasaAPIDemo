@@ -32,7 +32,7 @@ public class APODDao extends MySQLConnection{
             {
                 APOD apod = new APOD();
                 apod.setId(rs.getInt("id"));
-                apod.setDate(rs.getDate("date"));
+                apod.setDate(String.valueOf(rs.getDate("date")));
                 apod.setExplanation(rs.getString("explanation"));
                 apod.setUrl(rs.getString("url"));
                 apod.setHdUrl(rs.getString("HDurl"));

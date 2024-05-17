@@ -2,13 +2,11 @@ package com.example.nasaapidemo.apicontroller;
 
 import com.example.nasaapidemo.Models.APOD;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +20,8 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         thumbs,
         api_key
     }
+    /*Este es necesario porque API de Nasa solo permite los query en este orden*/
+    private static final parameters[] ordered={parameters.date,parameters.start_date,parameters.end_date,parameters.count,parameters.thumbs,parameters.api_key};
     @Override
     public APOD get(APOD info) {
         String request = APODUrl + buildQueryParameters(buildMapFromModel(info));
@@ -69,18 +69,20 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
                 .build());
-        return parseJSONList(result);
+        return parseJSONList(result,count);
     }
 
-    private APOD[] parseJSONList(HttpResponse<String> result) {
+    private APOD[] parseJSONList(HttpResponse<String> result, int count) {
 
         Gson gson= new Gson();
-
-        APOD[] recollect = new APOD[0];
+        APOD[] recollect = new APOD[count];
+        System.out.println(result.body());
         return gson.fromJson(result.body(),recollect.getClass());
     }
 
     public APOD parseJSON(HttpResponse<String> json) {
+        System.out.println(json.body());
+
         return APIConsumer.super.parseJSON(json, APOD.class);
     }
 
@@ -99,10 +101,12 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
 
     private String buildQueryParameters(Map<parameters,String> queryValueMap){
         StringBuilder parametricQuery= new StringBuilder("?");
-        for (parameters s:queryValueMap.keySet()){
-            if (parametricQuery.codePointBefore(parametricQuery.length())!='?')
-                parametricQuery.append("&");
-            parametricQuery.append(s).append("=").append(queryValueMap.get(s));
+        for (APODConsumer.parameters parameters : ordered) {
+            if (!queryValueMap.getOrDefault(parameters, "").equalsIgnoreCase("")) {
+                if (parametricQuery.codePointBefore(parametricQuery.length()) != '?')
+                    parametricQuery.append("&");
+                parametricQuery.append(parameters).append("=").append(queryValueMap.get(parameters));
+            }
         }
 
         return parametricQuery.toString();
