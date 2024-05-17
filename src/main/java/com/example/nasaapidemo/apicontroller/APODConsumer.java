@@ -62,7 +62,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
                 .build());
         return parseJSON(result);
     }
-    public Collection<APOD> getRandomByCount(int count){
+    public APOD[] getRandomByCount(int count){
         Map<parameters,String> queryMap =mapFromAPIkey();
         queryMap.put(parameters.count,count+"");
         String request = APODUrl + buildQueryParameters(queryMap);
@@ -72,10 +72,12 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
         return parseJSONList(result);
     }
 
-    private Collection<APOD> parseJSONList(HttpResponse<String> result) {
-        TypeToken<Collection<APOD>> collectionType = new TypeToken<>(){};
+    private APOD[] parseJSONList(HttpResponse<String> result) {
+
         Gson gson= new Gson();
-        return gson.fromJson(result.body(), collectionType);
+
+        APOD[] recollect = new APOD[0];
+        return gson.fromJson(result.body(),recollect.getClass());
     }
 
     public APOD parseJSON(HttpResponse<String> json) {
