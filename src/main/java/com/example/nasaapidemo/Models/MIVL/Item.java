@@ -3,6 +3,8 @@ package com.example.nasaapidemo.Models.MIVL;
 import com.example.nasaapidemo.Models.MediaType;
 import com.google.gson.annotations.SerializedName;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Item {
