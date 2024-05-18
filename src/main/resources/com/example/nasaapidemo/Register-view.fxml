@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.nasaapidemo.Controllers.RegisterController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-image: url('BackgroudLogIn.jpg'); -fx-background-size: cover">
+
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Label text="User" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
+            <TextField fx:id="txtUser" promptText="Type User" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
+            <TextField fx:id="txtPassword" promptText="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
+            <TextField fx:id="txtEmail" promptText="Type Email" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
+            <TextField fx:id="txtCode" promptText="type administrator code" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <Button style="-fx-background-color: rgba(55,146,119,0.84); -fx-font-size: 20" text="Register" contentDisplay="TOP" prefWidth="130" prefHeight="30">
+                <graphic>
+                    <FontIcon iconLiteral="fas-door-closed" iconSize="40" iconColor="black"/>
+                </graphic>
+            </Button>
+        </VBox>
+    </center>
+</BorderPane>
+

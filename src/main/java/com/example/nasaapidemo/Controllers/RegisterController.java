@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportsController {
+public class RegisterController {
     @FXML
     TextField txt_nameFile;
     List<APOD> a_apods=new ArrayList();

@@ -23,7 +23,7 @@ public class MainController {
     @FXML
     private void onReportonClick() throws Exception{
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Reports-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Register-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Reports");

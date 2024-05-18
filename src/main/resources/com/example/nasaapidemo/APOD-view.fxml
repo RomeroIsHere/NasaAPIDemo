@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.APODController"
@@ -20,6 +21,11 @@
                 <Button text="Get Information" styleClass="btn,btn-primary" onAction="#m_onClickgetInformation"/>
                 <Button text="Delete" styleClass="btn,btn-primary" onAction="#m_onClickDelete"/>
                 <Button text="Update" styleClass="btn,btn-primary" onAction="#m_onClickUpdate"/>
+                <Button text="Save" styleClass="btn,btn-danger" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
             </HBox>
             <Label/>
         </VBox>
