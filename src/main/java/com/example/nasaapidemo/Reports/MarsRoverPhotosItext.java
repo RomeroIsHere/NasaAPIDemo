@@ -1,6 +1,6 @@
 package com.example.nasaapidemo.Reports;
 
-import com.example.nasaapidemo.Models.Photos;
+import com.example.nasaapidemo.Models.MMars.Photos;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;

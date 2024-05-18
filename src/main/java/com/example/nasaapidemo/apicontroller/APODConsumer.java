@@ -1,6 +1,6 @@
 package com.example.nasaapidemo.apicontroller;
 
-import com.example.nasaapidemo.Models.APOD;
+import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.google.gson.Gson;
 
 import java.net.URI;

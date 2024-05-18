@@ -1,9 +1,8 @@
 package com.example.nasaapidemo.database.Dao;
 
 
-import com.example.nasaapidemo.Models.APOD;
+import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MediaType;
-import com.example.nasaapidemo.apicontroller.APODConsumer;
 import com.example.nasaapidemo.database.MySQLConnection;
 import javafx.collections.FXCollections;
 

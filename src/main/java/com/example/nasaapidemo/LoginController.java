@@ -1,18 +1,10 @@
 package com.example.nasaapidemo;
 
-import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.Models.MediaType;
-import com.example.nasaapidemo.Reports.APODItext;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginController {
 
@@ -45,6 +37,7 @@ public class LoginController {
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Images and Videos Library");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }

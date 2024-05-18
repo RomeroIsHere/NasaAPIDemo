@@ -1,8 +1,6 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.Models.Camera;
-import com.example.nasaapidemo.Models.MediaType;
+import com.example.nasaapidemo.Models.MMars.Camera;
 import javafx.collections.FXCollections;
 
 import java.sql.*;

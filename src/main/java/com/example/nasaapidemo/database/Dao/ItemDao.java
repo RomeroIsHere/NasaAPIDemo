@@ -1,7 +1,6 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.Models.Item;
+import com.example.nasaapidemo.Models.MIVL.Item;
 import com.example.nasaapidemo.Models.MediaType;
 import javafx.collections.FXCollections;
 

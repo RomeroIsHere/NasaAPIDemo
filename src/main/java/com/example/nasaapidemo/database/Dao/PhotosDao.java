@@ -1,13 +1,13 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.*;
-import com.example.nasaapidemo.apicontroller.APODConsumer;
+import com.example.nasaapidemo.Models.MMars.Camera;
+import com.example.nasaapidemo.Models.MMars.Photos;
+import com.example.nasaapidemo.Models.MMars.Rover;
 import javafx.collections.FXCollections;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.nasaapidemo.database.MySQLConnection.getConnection;
 

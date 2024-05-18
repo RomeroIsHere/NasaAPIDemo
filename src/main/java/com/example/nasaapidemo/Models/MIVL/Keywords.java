@@ -1,4 +1,4 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MIVL;
 
 public class Keywords {
 

@@ -1,4 +1,6 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MAPOD;
+
+import com.example.nasaapidemo.Models.MediaType;
 
 public class APOD {
 

@@ -1,6 +1,5 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.Keywords;
 import com.example.nasaapidemo.Models.MediaType;
 import javafx.collections.FXCollections;
 

@@ -2,7 +2,7 @@ package com.example.nasaapidemo.apicontroller;
 
 import com.example.nasaapidemo.Models.Collection;
 import com.example.nasaapidemo.Models.Data;
-import com.example.nasaapidemo.Models.Item;
+import com.example.nasaapidemo.Models.MIVL.Item;
 import com.google.gson.Gson;
 
 import java.net.URI;

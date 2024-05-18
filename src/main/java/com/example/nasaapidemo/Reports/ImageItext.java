@@ -1,7 +1,6 @@
 package com.example.nasaapidemo.Reports;
 
-import com.example.nasaapidemo.Models.APOD;
-import com.example.nasaapidemo.Models.Item;
+import com.example.nasaapidemo.Models.MIVL.Item;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -14,7 +13,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import com.example.nasaapidemo.Models.Item;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
