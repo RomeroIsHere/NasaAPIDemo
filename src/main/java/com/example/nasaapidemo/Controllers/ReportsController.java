@@ -1,7 +1,7 @@
-package com.example.nasaapidemo;
+package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.Models.MAPOD.APOD;
-import com.example.nasaapidemo.Models.MediaType;
+import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

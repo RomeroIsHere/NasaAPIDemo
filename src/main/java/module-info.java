@@ -17,9 +17,12 @@ module com.example.nasaapidemo {
     requires com.google.gson;
 
     opens com.example.nasaapidemo to javafx.fxml;
-    exports com.example.nasaapidemo;
+    exports com.example.nasaapidemo.Controllers;
+    exports com.example.nasaapidemo.Models;
     opens com.example.nasaapidemo.Models to com.google.gson;
     opens com.example.nasaapidemo.Models.MAPOD to com.google.gson;
     opens com.example.nasaapidemo.Models.MMars to com.google.gson;
     opens com.example.nasaapidemo.Models.MIVL to com.google.gson;
+    opens com.example.nasaapidemo.Controllers to javafx.fxml;
+    exports com.example.nasaapidemo;
 }

@@ -1,4 +1,4 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MIVL;
 
 public class Collection {
     //Creado para sacar el valor de ITEMS dentro de la Respuesta de NIVL

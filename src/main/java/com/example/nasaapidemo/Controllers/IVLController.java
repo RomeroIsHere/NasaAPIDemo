@@ -1,4 +1,4 @@
-package com.example.nasaapidemo;
+package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import javafx.fxml.FXML;

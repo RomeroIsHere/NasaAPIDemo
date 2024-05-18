@@ -1,6 +1,6 @@
 package com.example.nasaapidemo.Models.MIVL;
 
-import com.example.nasaapidemo.Models.MediaType;
+import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;

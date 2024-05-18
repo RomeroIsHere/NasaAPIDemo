@@ -1,6 +1,5 @@
-package com.example.nasaapidemo.Models;
+package com.example.nasaapidemo.Models.MIVL;
 
-import com.example.nasaapidemo.Models.MIVL.Item;
 import com.google.gson.annotations.SerializedName;
 
 public class Data {

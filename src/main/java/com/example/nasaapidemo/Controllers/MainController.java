@@ -1,12 +1,13 @@
-package com.example.nasaapidemo;
+package com.example.nasaapidemo.Controllers;
 
+import com.example.nasaapidemo.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-public class LoginController {
+public class MainController {
 
     @FXML
     private void onAPODonClick() throws Exception{

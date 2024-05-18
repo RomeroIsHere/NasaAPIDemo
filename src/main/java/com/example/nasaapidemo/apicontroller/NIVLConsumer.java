@@ -1,7 +1,7 @@
 package com.example.nasaapidemo.apicontroller;
 
-import com.example.nasaapidemo.Models.Collection;
-import com.example.nasaapidemo.Models.Data;
+import com.example.nasaapidemo.Models.MIVL.Collection;
+import com.example.nasaapidemo.Models.MIVL.Data;
 import com.example.nasaapidemo.Models.MIVL.Item;
 import com.google.gson.Gson;
 

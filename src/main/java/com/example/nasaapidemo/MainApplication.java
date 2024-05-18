@@ -14,14 +14,12 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-        stage.setTitle("NASA");
+        stage.setTitle("Log-In");
         stage.setScene(scene);
         stage.show();
     }
-
-
 
 
     public static void main(String[] args) {

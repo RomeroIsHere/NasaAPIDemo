@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.nasaapidemo.Controllers.MainController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-image: url('BackgroudLogIn.jpg'); -fx-background-size: cover">
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <Button text="APOD" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick">
+                <graphic>
+                    <FontIcon iconLiteral="fas-folder-open" iconSize="20" iconColor="white"/>
+                </graphic>
+            </Button>
+            <Button text="IVL" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick">
+                <graphic>
+                    <FontIcon iconLiteral="fas-camera-retro" iconSize="20" iconColor="white"/>
+                </graphic>
+            </Button>
+            <Button text="Mars" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick">
+                <graphic>
+                    <FontIcon iconLiteral="fas-globe-americas" iconSize="20" iconColor="white"/>
+                </graphic>
+            </Button>
+            <Button text="Reports" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReportonClick">
+                <graphic>
+                    <FontIcon iconLiteral="fas-file-pdf" iconSize="20" iconColor="white"/>
+                </graphic>
+            </Button>
+        </VBox>
+    </center>
+</BorderPane>

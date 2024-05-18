@@ -1,4 +1,2 @@
-package com.example.nasaapidemo.Models;
-
-public class Model {
+package com.example.nasaapidemo.Models;public class Model {
 }

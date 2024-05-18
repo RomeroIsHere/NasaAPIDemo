@@ -1,4 +1,4 @@
-package com.example.nasaapidemo;
+package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class APODController implements Initializable {
+public class MarsController implements Initializable {
     @FXML
     TableView a_tblAPOD;
     List<APOD> a_listAPOD=new ArrayList();
