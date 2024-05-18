@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 public abstract class AbstractHTTPConnect {
     protected String APIkey;
-    HttpClient client;
+    protected HttpClient client;
     public AbstractHTTPConnect() {
         this.client = HttpClient.newHttpClient();
     }

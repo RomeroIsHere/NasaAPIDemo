@@ -1,76 +1,144 @@
 package com.example.nasaapidemo.Reports;
 
+
 import com.example.nasaapidemo.Models.MAPOD.APOD;
+import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.UnitValue;
 
+import javax.print.Doc;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.Phaser;
 
 
 public class APODItext {
 
-    public void createPdf(String dest,List<APOD> p_Apod) throws IOException {
+    private ImageRetriever a_image;
+
+
+
+    public APODItext(){
+        a_image=new ImageRetriever();
+    }
+
+
+
+    public void createPdf(String dest,List<APOD> p_Apod) throws IOException, URISyntaxException {
         //Initialize PDF writer
         PdfWriter writer = new PdfWriter(dest);
 
         //Initialize PDF document
         PdfDocument pdf = new PdfDocument(writer);
+        Image v = new Image(ImageDataFactory.create("C:/Users/joseb/OneDrive/Pictures/133580247147577281.jpg"));
 
+
+
+        v.setHeight(200);
 
         // Initialize document
         Document document = new Document(pdf, PageSize.A4.rotate());
-        document.setMargins(20, 20, 20, 20);
-
-        PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
-        PdfFont bold = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
-        Table table = new Table(UnitValue.createPercentArray(new float[]{0.03f,0.03f,0.03f,0.1f}))
-                .useAllAvailableWidth();
+        document.setStrokeColor(ColorConstants.BLUE);
 
 
-        process(table, null, bold, true);
+        m_setStylDocument(document);
+        for (APOD v_apod : p_Apod) {
+            document.add(m_setTitle(v_apod.getTitle()));
+            document.add(new Paragraph().add(v).setTextAlignment(TextAlignment.CENTER));
+            document.add(m_setTicket("Date: ").add(m_setResults(v_apod.getDate())));
+            document.add(new Paragraph(""));
+            document.add(m_setTicket("URL: ").add(m_setResults(v_apod.getUrl()).setFontColor(ColorConstants.BLUE)));
+            document.add(new Paragraph(""));
+            document.add(m_setTicket("getExplanation:\n"));
+            document.add(new Paragraph(""));
+            document.add(m_setResults(v_apod.getExplanation() + "\n"));
+            m_createNewPage(pdf, document);
+        }
 
-        for(APOD v_registro: p_Apod)
-            process(table, v_registro, font, false);
 
-        document.add(new Paragraph("APOD Service").setTextAlignment(TextAlignment.CENTER).setFont(bold));
-        document.add(table);
+
+        pdf.removePage(pdf.getLastPage());
+
 
         openFile(dest);
         //Close document
         document.close();
     }
 
-    public void process(Table table, APOD p_apod, PdfFont font, boolean isHeader) {
-
-        if (isHeader) {
-            table.addHeaderCell(new Cell().add(new Paragraph("date").setFont(font)));
-            table.addHeaderCell(new Cell().add(new Paragraph("media type").setFont(font)));
-            table.addHeaderCell(new Cell().add(new Paragraph("Service Vercion").setFont(font)));
-            table.addHeaderCell(new Cell().add(new Paragraph("hdurl").setFont(font)));
 
 
-        } else {
-            table.addCell(new Cell().add(new Paragraph(p_apod.getDate()).setFont(font)));
-            table.addCell(new Cell().add(new Paragraph(p_apod.getCveMedia().getName()).setFont(font)));
-            table.addCell(new Cell().add(new Paragraph(p_apod.getServiceVersion()).setFont(font)));
-            table.addCell(new Cell().add(new Paragraph(p_apod.getHdUrl()).setFont(font)));
 
+
+
+
+     private void m_createNewPage(PdfDocument p_pages,Document p_document){
+        int v_contador;
+        v_contador=p_pages.getNumberOfPages();
+
+        while(v_contador== p_pages.getNumberOfPages())
+            p_document.add(new Paragraph("\n"));
+
+     }
+
+    private Paragraph m_setTitle(String p_text) throws IOException {
+        Paragraph v_respuesta;
+            Text v_text=new Text(p_text+"\n");
+            v_text.setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD));
+            v_text.setBold();
+            v_text.setUnderline();
+            v_text.setFontColor(ColorConstants.BLACK);
+            v_text.setFontSize(25);
+
+        v_respuesta=new Paragraph(v_text);
+
+        v_respuesta.setTextAlignment(TextAlignment.CENTER);
+
+          return v_respuesta;
         }
 
+        private Paragraph m_setTicket(String p_text) throws IOException {
+            Paragraph v_respuesta;
+            Text v_text=new Text(p_text);
+            v_text.setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD));
+            v_text.setFontColor(ColorConstants.BLACK);
+            v_text.setFontSize(12);
+
+            v_respuesta=new Paragraph(v_text);
+
+            v_respuesta.setTextAlignment(TextAlignment.CENTER);
+
+            return v_respuesta;
+        }
+
+
+    private Paragraph m_setResults(String p_text) throws IOException {
+        Paragraph v_respuesta;
+        Text v_text=new Text(p_text);
+        v_text.setFont(PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN));
+        v_text.setFontSize(12);
+
+        v_respuesta=new Paragraph(v_text);
+
+        v_respuesta.setTextAlignment(TextAlignment.JUSTIFIED);
+
+        return v_respuesta;
     }
+
+
 
     private void openFile(String filename)
     {
@@ -83,6 +151,19 @@ public class APODItext {
             }
         }
     }
+
+
+    private void m_setStylDocument(Document p_document){
+        p_document.setMargins(20, 20, 20, 20);
+        p_document.setBorder(Border.NO_BORDER);
+
+    }
+
+
+
+
+
+
 
 
 

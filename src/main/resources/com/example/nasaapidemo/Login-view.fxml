@@ -16,9 +16,9 @@
         <center>
             <VBox spacing="20" alignment="CENTER">
                 <Label text="User" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
-                <TextField fx:id="txtUser" text="Type User" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+                <TextField fx:id="txtUser" promptText="Type User" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
                 <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
-                <TextField fx:id="txtPassword" text="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+                <TextField fx:id="txtPassword" promptText="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
                 <Button onAction="#m_onDirigir" style="-fx-background-color: rgba(55,146,119,0.84); -fx-font-size: 20" text="Log-In" contentDisplay="TOP" prefWidth="100" prefHeight="30">
                     <graphic>
                         <FontIcon iconLiteral="fas-door-closed" iconSize="40" iconColor="black"/>
