@@ -21,7 +21,7 @@
                 <Button text="Get Information" styleClass="btn,btn-primary" onAction="#m_onClickgetInformation"/>
                 <Button text="Delete" styleClass="btn,btn-primary" onAction="#m_onClickDelete"/>
                 <Button text="Update" styleClass="btn,btn-primary" onAction="#m_onClickUpdate"/>
-                <Button text="Save" styleClass="btn,btn-danger" contentDisplay="TOP">
+                <Button text="Save" styleClass="btn,btn-danger" contentDisplay="TOP" onAction="#m_onClickSave">
                     <graphic>
                         <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
                     </graphic>

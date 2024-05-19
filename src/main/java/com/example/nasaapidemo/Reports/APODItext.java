@@ -4,6 +4,7 @@ package com.example.nasaapidemo.Reports;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.concurrent.Phaser;
 
 
@@ -44,11 +46,6 @@ public class APODItext {
 
         //Initialize PDF document
         PdfDocument pdf = new PdfDocument(writer);
-        Image v = new Image(ImageDataFactory.create("C:/Users/joseb/OneDrive/Pictures/133580247147577281.jpg"));
-
-
-
-        v.setHeight(200);
 
         // Initialize document
         Document document = new Document(pdf, PageSize.A4.rotate());
@@ -58,8 +55,15 @@ public class APODItext {
         m_setStylDocument(document);
         for (APOD v_apod : p_Apod) {
             document.add(m_setTitle(v_apod.getTitle()));
-            document.add(new Paragraph().add(v).setTextAlignment(TextAlignment.CENTER));
+         //   document.add(new Paragraph().add(v).setTextAlignment(TextAlignment.CENTER));
             document.add(m_setTicket("Date: ").add(m_setResults(v_apod.getDate())));
+
+            if(v_apod.getCveMedia().getName().equalsIgnoreCase("Image"))
+            document.add(m_setImage(v_apod.getUrl()));
+            else
+               document.add(m_setImage("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=1060"));
+
+
             document.add(new Paragraph(""));
             document.add(m_setTicket("URL: ").add(m_setResults(v_apod.getUrl()).setFontColor(ColorConstants.BLUE)));
             document.add(new Paragraph(""));
@@ -83,7 +87,19 @@ public class APODItext {
 
 
 
+    private Paragraph m_setImage(String p_imagUrl) throws IOException {
+        Paragraph v_respuesta;
+        Image v_image;
+        v_respuesta=new Paragraph();
 
+        v_image=new Image(a_image.getDataFromURL(p_imagUrl));
+        v_image.setHeight(150);
+        v_respuesta.setTextAlignment(TextAlignment.CENTER);
+
+        v_respuesta.add(v_image);
+
+        return v_respuesta;
+    }
 
      private void m_createNewPage(PdfDocument p_pages,Document p_document){
         int v_contador;
@@ -133,7 +149,7 @@ public class APODItext {
 
         v_respuesta=new Paragraph(v_text);
 
-        v_respuesta.setTextAlignment(TextAlignment.JUSTIFIED);
+        v_respuesta.setTextAlignment(TextAlignment.CENTER);
 
         return v_respuesta;
     }
