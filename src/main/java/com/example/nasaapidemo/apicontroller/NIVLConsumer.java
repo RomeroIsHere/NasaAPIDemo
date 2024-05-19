@@ -13,13 +13,16 @@ import java.util.Map;
 
 public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Item> {
     public static final String NIVLRoot="https://images-api.nasa.gov/search";
-    private enum parameters{
+    private Map<parameters,String> parametersStringMap =defaultMap();
+    public enum parameters{
         q,
         center,
         description,
         keywords,
         nasa_id,
         title,
+        year_start,
+        year_end,
         media_type
     }
     @Override
@@ -31,6 +34,76 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
 
         return parseJSON(result,Item.class);
     }
+    public void addParameter(NIVLConsumer.parameters parametro, String value){
+        parametersStringMap.put(parametro,value);
+    }
+    public void resetParameters(){
+        parametersStringMap=defaultMap();
+    }
+    public Item[] executePreparedParameters(){
+        String request = NIVLRoot + buildQueryParameters(parametersStringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return datumsIntoItems(parseJSONCollectionsArrayOfDatums(result));
+    }
+
+    public Item[] searchByDesc(String desc){
+        Map<parameters,String> stringMap=defaultMap();
+        stringMap.put(parameters.description,desc);
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return datumsIntoItems(parseJSONCollectionsArrayOfDatums(result));
+    }
+    public Item[] searchByKeywords(String... keywords){
+        Map<parameters,String> stringMap=defaultMap();
+        StringBuilder keys= new StringBuilder();
+        if (keywords.length!=1) {
+            for (String s : keywords)
+                keys.append(s).append(",");
+            keys.deleteCharAt(keys.length());
+        }else {
+            keys = new StringBuilder(keywords[0]);
+        }
+        stringMap.put(parameters.keywords,keys.toString());
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return datumsIntoItems(parseJSONCollectionsArrayOfDatums(result));
+    }
+    public Item[] searchbyYearRange(String yearStart,String yearEnd){
+        Map<parameters,String> stringMap=defaultMap();
+        stringMap.put(parameters.year_end,yearEnd);
+        stringMap.put(parameters.year_start,yearStart);
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return datumsIntoItems(parseJSONCollectionsArrayOfDatums(result));
+    }
+    public Item searchByNasaID(String nasaID){
+        Map<parameters,String> stringMap=defaultMap();
+        stringMap.put(parameters.nasa_id,nasaID);
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return parseJSON(result, Item.class);
+    }
+    public Item searchBytitle(String title){
+        Map<parameters,String> stringMap=defaultMap();
+        stringMap.put(parameters.title,title);
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return parseJSON(result, Item.class);
+    }
+
+
     private Map<parameters,String> defaultMap() {
         Map<parameters, String> querySet = new HashMap<>();
         querySet.put(parameters.media_type, "image");
@@ -63,7 +136,7 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
         Gson song=new Gson();
         return song.fromJson(json.body(), Collection.class).getItems()[0].item[0];
     }
-    public Data[] parseJSONCollectionsArrayOfDatums(HttpResponse<String> json, Class<Data[]> aClass) {
+    public Data[] parseJSONCollectionsArrayOfDatums(HttpResponse<String> json) {
         Gson song=new Gson();
         return song.fromJson(json.body(), Collection.class).getItems();
     }
@@ -71,6 +144,7 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
         Item[] items=new Item[dat.length];
         for (int i = 0; i < dat.length; i++) {
             items[i]=dat[i].item[0];
+            items[i].setHref(dat[i].linkWrapper[0].href);
         }
         return items;
     }

@@ -5,4 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public class Data {
     @SerializedName("data")
     public Item[] item;
+    @SerializedName("links")
+    public LinkWrapper[] linkWrapper;
 }
