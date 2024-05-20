@@ -4,19 +4,28 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.MarsController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-image: url('MarsBackground.jpg'); -fx-background-size: cover">
 
     <top>
         <VBox spacing="15" alignment="CENTER" >
             <Label text="Mars" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
 
             <HBox alignment="CENTER" spacing="10">
-                <Button text="Get Information" styleClass="btn,btn-primary" onAction="#m_onClickgetInformation"/>
-                <Button text="Delete" styleClass="btn,btn-primary" onAction="#m_onClickDelete"/>
-                <Button text="Update" styleClass="btn,btn-primary" onAction="#m_onClickUpdate"/>
+                <Button text="Get Information" styleClass="btn,btn-primary" contentDisplay="TOP" onAction="#m_onClickgetInformation">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-download" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
+                <Button text="Save" styleClass="btn,btn-primary" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-save" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
             </HBox>
             <Label/>
         </VBox>
@@ -25,49 +34,42 @@
 
     <center>
         <VBox alignment="TOP_CENTER">
-            <TableView fx:id="a_tblAPOD" >
-
-                <columns>
-                    <TableColumn  text="ID">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="id"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="Sol">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="date"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <TableColumn  text="Earth date">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="date"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <TableColumn  text="Image src">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="url"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="Id Camera">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="hdUrl"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="Id Rover">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="thumbnailUrl"/>
-                        </cellValueFactory>
-                    </TableColumn>
-                </columns>
-            </TableView>
+            <HBox alignment="CENTER">
+                <TableView fx:id="a_tblAPOD">
+                    <columns>
+                        <TableColumn text="ID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="id"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Sol">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="sol"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Earth date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="earthDate"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Image src">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="imageSrc"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Id Camera">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="idCamera"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Id Rover">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="idRover"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>
