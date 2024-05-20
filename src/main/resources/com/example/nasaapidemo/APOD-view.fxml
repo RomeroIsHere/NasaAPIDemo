@@ -11,17 +11,25 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.APODController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-image: url('APODbackground.jpg'); -fx-background-size: cover">
 
     <top>
         <VBox spacing="15" alignment="CENTER" >
             <Label text="APOD" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
 
             <HBox alignment="CENTER" spacing="10">
-                <Button text="Get Information" styleClass="btn,btn-primary" onAction="#m_onClickgetInformation"/>
-                <Button text="Delete" styleClass="btn,btn-primary" onAction="#m_onClickDelete"/>
-                <Button text="Update" styleClass="btn,btn-primary" onAction="#m_onClickUpdate"/>
-                <Button text="Save" styleClass="btn,btn-danger" contentDisplay="TOP" onAction="#m_onClickSave">
+                <Button text="Get Information" styleClass="btn,btn-primary" contentDisplay="TOP" onAction="#m_onClickgetInformation">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-download" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
+                <Button text="Save" styleClass="btn,btn-primary" contentDisplay="TOP" onAction="#m_onClickSave">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-save" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
+                <Button text="PDF" styleClass="btn,btn-danger" contentDisplay="TOP"  onAction="#m_onClickUpdate">
                     <graphic>
                         <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
                     </graphic>
@@ -34,58 +42,47 @@
 
     <center>
         <VBox alignment="TOP_CENTER">
-            <TableView fx:id="a_tblAPOD" >
-
-                <columns>
-                    <TableColumn  text="ID">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="id"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="date">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="date"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="url">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="url"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="hdUrl">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="hdUrl"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-
-                    <TableColumn  text="thumbnailUrl">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="thumbnailUrl"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <TableColumn  text="serviceVersion">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="serviceVersion"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <TableColumn  text="cveMedia">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="cveMedia"/>
-                        </cellValueFactory>
-                    </TableColumn>
-                </columns>
-
-            </TableView>
-
+            <HBox alignment="CENTER">
+                <TableView fx:id="a_tblAPOD">
+                    <columns>
+                        <TableColumn text="ID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="id"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="date"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="url">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="url"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="hdUrl">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="hdUrl"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="thumbnailUrl">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="thumbnailUrl"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="serviceVersion">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="serviceVersion"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="cveMedia">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cveMedia"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </HBox>
         </VBox>
     </center>
 

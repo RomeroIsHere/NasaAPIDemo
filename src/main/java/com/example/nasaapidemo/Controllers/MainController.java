@@ -16,6 +16,7 @@ public class MainController {
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("APOD");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
@@ -50,6 +51,7 @@ public class MainController {
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Mars");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
