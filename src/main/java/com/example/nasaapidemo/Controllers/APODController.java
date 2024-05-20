@@ -4,12 +4,18 @@ import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
+import com.example.nasaapidemo.apicontroller.APODConsumer;
+import com.example.nasaapidemo.apicontroller.ImageRetriever;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
@@ -21,9 +27,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class APODController implements Initializable {
+
+    @FXML
+    HBox contenedor;
+
     @FXML
     TableView a_tblAPOD;
     List<APOD> a_listAPOD=new ArrayList();
+
+
 
     APODItext a_archivo=new APODItext();
 
@@ -38,9 +50,21 @@ public class APODController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
 
+        try{
+            ImageRetriever img = new ImageRetriever();
+            ImageView imageView = new ImageView(img.getFromURL("https://api.nasa.gov/assets/img/general/apod.jpg"));
+            imageView.setFitWidth(200);
+            imageView.setPreserveRatio(true);
+            contenedor.getChildren().add(imageView);
+        }
+        catch (Exception e){
+
+        }
     }
+
+
     @FXML
     private void m_onClickUpdate() throws IOException, URISyntaxException {
         List<APOD> v_list=new ArrayList();
@@ -65,6 +89,7 @@ public class APODController implements Initializable {
         Scene newScene = new Scene(newView);
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
+        currentStage.centerOnScreen();
         currentStage.setMaximized(true);
         currentStage.show();
     }

@@ -62,8 +62,9 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
                 .build());
         return parseJSONList(result,1);
     }
+
     public APOD[] getRandomByCount(int count){
-        Map<parameters,String> queryMap =mapFromAPIkey();
+        Map<parameters,String> queryMap = mapFromAPIkey();
         queryMap.put(parameters.count,count+"");
         String request = APODUrl + buildQueryParameters(queryMap);
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()

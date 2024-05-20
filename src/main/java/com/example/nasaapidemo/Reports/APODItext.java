@@ -84,9 +84,6 @@ public class APODItext {
     }
 
 
-
-
-
     private Paragraph m_setImage(String p_imagUrl) throws IOException {
         Paragraph v_respuesta;
         Image v_image;

@@ -1,6 +1,7 @@
 package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,7 +28,11 @@ public class LoginController {
         Scene newScene = new Scene(newView);
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
-        currentStage.setMaximized(true);
+        currentStage.centerOnScreen();
+        Platform.runLater(() -> {
+            currentStage.setMaximized(false);
+            currentStage.setMaximized(true);
+        });
         currentStage.show();
     }
 
@@ -38,6 +43,7 @@ public class LoginController {
         Scene newScene = new Scene(newView);
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
+        currentStage.centerOnScreen();
         currentStage.setMaximized(true);
         currentStage.show();
     }

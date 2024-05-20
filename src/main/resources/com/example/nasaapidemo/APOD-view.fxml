@@ -44,6 +44,7 @@
         <VBox alignment="TOP_CENTER" spacing="10">
             <Label/>
             <Label/>
+            <HBox fx:id="contenedor" spacing="5"/>
 
             <Label/>
             <Label/>

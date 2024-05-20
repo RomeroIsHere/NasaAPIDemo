@@ -2,6 +2,7 @@ package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +42,7 @@ public class IVLController implements Initializable {
         Scene newScene = new Scene(newView);
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
+        currentStage.centerOnScreen();
         currentStage.setMaximized(true);
         currentStage.show();
     }

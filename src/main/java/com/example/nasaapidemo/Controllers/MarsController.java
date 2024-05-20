@@ -2,6 +2,7 @@ package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,6 +49,7 @@ public class MarsController implements Initializable {
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
         currentStage.setMaximized(true);
+        currentStage.centerOnScreen();
         currentStage.show();
     }
 }

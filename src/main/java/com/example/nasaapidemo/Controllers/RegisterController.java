@@ -4,6 +4,7 @@ import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -73,6 +74,7 @@ public class RegisterController {
         newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         currentStage.setScene(newScene);
         currentStage.setMaximized(true);
+        currentStage.centerOnScreen();
         currentStage.show();
     }
 }
