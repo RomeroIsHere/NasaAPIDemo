@@ -31,5 +31,14 @@
             </Button>
         </VBox>
     </center>
+    <bottom>
+        <VBox spacing="10" alignment="BOTTOM_CENTER" style="-fx-padding: 10">
+            <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
+                <graphic>
+                    <FontIcon iconLiteral="fas-reply" iconSize="20" iconColor="white"/>
+                </graphic>
+            </Button>
+        </VBox>
+    </bottom>
 </BorderPane>
 

@@ -20,6 +20,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Log-In");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }

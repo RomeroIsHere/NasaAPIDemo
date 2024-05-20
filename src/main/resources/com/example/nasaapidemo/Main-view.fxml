@@ -29,11 +29,6 @@
                     <FontIcon iconLiteral="fas-globe-americas" iconSize="20" iconColor="white"/>
                 </graphic>
             </Button>
-            <Button text="Register" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReportonClick">
-                <graphic>
-                    <FontIcon iconLiteral="fas-users-cog" iconSize="20" iconColor="white"/>
-                </graphic>
-            </Button>
         </VBox>
     </center>
 </BorderPane>

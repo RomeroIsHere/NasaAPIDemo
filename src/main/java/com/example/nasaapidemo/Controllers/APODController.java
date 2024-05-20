@@ -1,11 +1,17 @@
 package com.example.nasaapidemo.Controllers;
 
+import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -31,15 +37,12 @@ public class APODController implements Initializable {
     public void m_onClickDelete() {
     }
 
-    @FXML
-    public void m_onClickUpdate(){}
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
     @FXML
-    private void m_onClickSave() throws IOException, URISyntaxException {
+    private void m_onClickUpdate() throws IOException, URISyntaxException {
         List<APOD> v_list=new ArrayList();
         APOD v_apod;
         v_apod=new APOD();
@@ -54,9 +57,16 @@ public class APODController implements Initializable {
 
     }
 
-
-
-
-
+    @FXML
+    private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
+        Parent newView = fxmlLoader.load();
+        Stage currentStage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+        Scene newScene = new Scene(newView);
+        newScene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        currentStage.setScene(newScene);
+        currentStage.setMaximized(true);
+        currentStage.show();
+    }
 }
 
