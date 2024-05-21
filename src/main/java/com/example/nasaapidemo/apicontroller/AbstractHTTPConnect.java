@@ -6,7 +6,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public abstract class AbstractHTTPConnect {
-    protected String APIkey;
+    protected String APIkey="DEMO_KEY";
     protected HttpClient client;
     public AbstractHTTPConnect() {
         this.client = HttpClient.newHttpClient();
@@ -31,8 +31,6 @@ public abstract class AbstractHTTPConnect {
             System.out.println("Something went Wrong, and api was Interrupted");
             throw new RuntimeException(e);
         }
-
-        System.out.println(response.body());
         return response;
     }
 

@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APOD>{
     public static final String APODUrl = "https://api.nasa.gov/planetary/apod";
+
     private enum parameters{
         date,
         start_date,
@@ -77,13 +78,10 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
 
         Gson gson= new Gson();
         APOD[] recollect = new APOD[count];
-        System.out.println(result.body());
         return gson.fromJson(result.body(),recollect.getClass());
     }
 
     public APOD parseJSON(HttpResponse<String> json) {
-        System.out.println(json.body());
-
         return APIConsumer.super.parseJSON(json, APOD.class);
     }
 
@@ -103,7 +101,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
     private String buildQueryParameters(Map<parameters,String> queryValueMap){
         StringBuilder parametricQuery= new StringBuilder("?");
         for (APODConsumer.parameters parameters : ordered) {
-            if (!queryValueMap.getOrDefault(parameters, "").equalsIgnoreCase("")) {
+            if (!queryValueMap.getOrDefault(parameters, "default").equalsIgnoreCase("default")) {
                 if (parametricQuery.codePointBefore(parametricQuery.length()) != '?')
                     parametricQuery.append("&");
                 parametricQuery.append(parameters).append("=").append(queryValueMap.get(parameters));
@@ -114,5 +112,9 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
     }
     public APODConsumer() {
         super();
+    }
+
+    public APODConsumer(String key) {
+        super(key);
     }
 }

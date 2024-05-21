@@ -27,18 +27,6 @@ public class MainApplication extends Application {
 
 
     public static void main(String[] args) {
-        ImageRetriever ir=new ImageRetriever();
-        try {
-            Image hekate=ir.getFromURL("https://images-assets.nasa.gov/image/NHQ201907180120/NHQ201907180120~thumb.jpg");
-            System.out.println(hekate.getUrl());
-            System.out.println(hekate.getPixelReader().toString());
-            System.out.println(hekate.getHeight()+" && "+hekate.getWidth()
-            );
-        } catch (IOException e) {
-            System.out.println(e.getLocalizedMessage());
-        } catch (URISyntaxException e) {
-            System.out.println("Wrong URI"+e.getLocalizedMessage());
-        }
         launch();
     }
 }
