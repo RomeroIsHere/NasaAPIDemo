@@ -52,10 +52,12 @@ public class APODController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        APODConsumer APODConsumer=new APODConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
 
+        APOD apod = APODConsumer.getByDateString("2024-05-21");
         try{
             ImageRetriever img = new ImageRetriever();
-            ImageView imageView = new ImageView(img.getFromURL("https://api.nasa.gov/assets/img/general/apod.jpg"));
+            ImageView imageView = new ImageView(img.getFromURL(apod.getUrl()));
             imageView.setFitWidth(200);
             imageView.setPreserveRatio(true);
             contenedor.getChildren().add(imageView);

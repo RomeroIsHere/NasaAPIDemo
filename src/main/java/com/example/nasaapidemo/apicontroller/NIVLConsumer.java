@@ -20,6 +20,7 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
         description,
         keywords,
         nasa_id,
+        page_size,
         title,
         year_start,
         year_end,
@@ -68,6 +69,15 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
             keys = new StringBuilder(keywords[0]);
         }
         stringMap.put(parameters.keywords,keys.toString());
+        String request = NIVLRoot + buildQueryParameters(stringMap);
+        HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
+                .uri(URI.create(request))
+                .build());
+        return datumsIntoItems(parseJSONCollectionsArrayOfDatums(result));
+    }
+    public Item[] searchByPageSize(int count){
+        Map<parameters,String> stringMap=defaultMap();
+        stringMap.put(parameters.description,count+"");
         String request = NIVLRoot + buildQueryParameters(stringMap);
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
