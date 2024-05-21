@@ -7,26 +7,32 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.MainController"
             prefHeight="400.0" prefWidth="600.0"
             style="-fx-background-image: url('BackgroudLogIn.jpg'); -fx-background-size: cover">
     <center>
-        <VBox alignment="CENTER" spacing="10">
-            <Button text="APOD" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick">
+        <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="15">
+                <Label text="Aui puedes ingresar la Key que tengas" style="-fx-font-size: 20; -fx-text-fill: white"/>
+                <TextField fx:id="txtKey" style="-fx-font-size: 20" maxWidth="400"/>
+            </VBox>
+            <Button text="APOD" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick" prefWidth="60" prefHeight="70">
                 <graphic>
-                    <FontIcon iconLiteral="fas-folder-open" iconSize="20" iconColor="white"/>
+                    <FontIcon iconLiteral="fas-folder-open" iconSize="40" iconColor="white"/>
                 </graphic>
             </Button>
-            <Button text="IVL" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick">
+            <Button text="IVL" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick" prefWidth="60" prefHeight="70">
                 <graphic>
-                    <FontIcon iconLiteral="fas-camera-retro" iconSize="20" iconColor="white"/>
+                    <FontIcon iconLiteral="fas-camera-retro" iconSize="40" iconColor="white"/>
                 </graphic>
             </Button>
-            <Button text="Mars" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick">
+            <Button text="Mars" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick" prefWidth="60" prefHeight="70">
                 <graphic>
-                    <FontIcon iconLiteral="fas-globe-americas" iconSize="20" iconColor="white"/>
+                    <FontIcon iconLiteral="fas-globe-americas" iconSize="40" iconColor="white"/>
                 </graphic>
             </Button>
         </VBox>
