@@ -4,15 +4,10 @@ import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -68,7 +63,7 @@ public class RegisterController {
 
     @FXML
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Login-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
 }

@@ -20,14 +20,14 @@
                 <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
                 <TextField fx:id="txtPassword" promptText="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
                 <HBox spacing="10" alignment="CENTER">
-                    <Button onAction="#m_onDirigir" style="-fx-background-color: rgba(55,146,119,0.84); -fx-font-size: 20" text="Log-In" contentDisplay="TOP" prefWidth="100" prefHeight="30">
+                    <Button onAction="#m_onDirigir" style="-fx-background-color: rgba(55,146,119,0.84); -fx-font-size: 15" text="Log-In" contentDisplay="TOP" prefWidth="100" prefHeight="30">
                         <graphic>
                             <FontIcon iconLiteral="fas-door-closed" iconSize="40" iconColor="black"/>
                         </graphic>
                     </Button>
-                    <Button text="Register" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onRegist">
+                    <Button text="Register" style="-fx-background-color: rgba(146,55,55,0.84); -fx-font-size: 15; -fx-text-fill: black" contentDisplay="TOP" styleClass="btn, btn-danger" prefWidth="100" prefHeight="30" onAction="#onRegist">
                         <graphic>
-                            <FontIcon iconLiteral="fas-users-cog" iconSize="20" iconColor="white"/>
+                            <FontIcon iconLiteral="fas-user-alt" iconSize="40" iconColor="black"/>
                         </graphic>
                     </Button>
                 </HBox>
