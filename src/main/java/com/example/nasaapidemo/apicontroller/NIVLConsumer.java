@@ -51,7 +51,7 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
 
     public Item[] searchByDesc(String desc){
         Map<parameters,String> stringMap=defaultMap();
-        stringMap.put(parameters.description,desc);
+        stringMap.put(parameters.q,desc);
         String request = NIVLRoot + buildQueryParameters(stringMap);
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
