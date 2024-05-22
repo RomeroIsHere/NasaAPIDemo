@@ -1,6 +1,7 @@
 package com.example.nasaapidemo.apicontroller;
 
 import com.example.nasaapidemo.Models.MIVL.Collection;
+import com.example.nasaapidemo.Models.MIVL.CollectionWrapper;
 import com.example.nasaapidemo.Models.MIVL.Data;
 import com.example.nasaapidemo.Models.MIVL.Item;
 import com.google.gson.Gson;
@@ -148,7 +149,8 @@ public class NIVLConsumer extends AbstractHTTPConnect implements APIConsumer<Ite
     }
     public Data[] parseJSONCollectionsArrayOfDatums(HttpResponse<String> json) {
         Gson song=new Gson();
-        return song.fromJson(json.body(), Collection.class).getItems();
+
+        return song.fromJson(json.body(), CollectionWrapper.class).collection.getItems();
     }
     public Item[] datumsIntoItems(Data[] dat){
         Item[] items=new Item[dat.length];
