@@ -1,13 +1,24 @@
 package com.example.nasaapidemo.Models.MMars;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Rover {
-
-    private int idRover, totalPhotos, maxSol;
-    private Status idStatus;
+    @SerializedName("id")
+    private int idRover;
+    @SerializedName("total_photos")
+    private int totalPhotos;
+    @SerializedName("max_sol")
+    private int maxSol;
+    private String status;
+    private String max_date;
     private String name;
     private Date landingDate, launchDate, maxDate;
+
+    private Status idStatus;
+    @SerializedName("cameras")
+    Camera[] cameras;
 
     public Rover() {
     }
@@ -21,6 +32,18 @@ public class Rover {
         this.landingDate = landingDate;
         this.launchDate = launchDate;
         this.maxDate = maxDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Camera[] getCameras() {
+        return cameras;
+    }
+
+    public void setCameras(Camera[] cameras) {
+        this.cameras = cameras;
     }
 
     public int getIdRover() {

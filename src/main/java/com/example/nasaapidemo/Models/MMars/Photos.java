@@ -1,14 +1,19 @@
 package com.example.nasaapidemo.Models.MMars;
 
 import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 public class Photos {
 
     private int id, sol;
+    @SerializedName("camera")
     private Camera idCamera;
-    private Rover idRover;
+    @SerializedName("img_src")
     private String imageSrc;
+    @SerializedName("earth_date")
     private Date earthDate;
+    @SerializedName("rover")
+    private Rover idRover;
 
     public Photos() {
     }
