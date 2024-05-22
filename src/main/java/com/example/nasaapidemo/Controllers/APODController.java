@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,9 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -31,6 +34,9 @@ public class APODController implements Initializable {
 
     @FXML
     HBox contenedor;
+
+    @FXML
+    Label title, date, urlIMG, explanation;
 
     @FXML
     TableView a_tblAPOD;
@@ -52,13 +58,22 @@ public class APODController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        APODConsumer APODConsumer=new APODConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
+        Date currentDate=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateTime= dateFormat.format(currentDate);
 
+        APOD apod = APODConsumer.getByDateString(dateTime);
         try{
             ImageRetriever img = new ImageRetriever();
-            ImageView imageView = new ImageView(img.getFromURL("https://api.nasa.gov/assets/img/general/apod.jpg"));
-            imageView.setFitWidth(200);
+            ImageView imageView = new ImageView(img.getFromURL(apod.getUrl()));
+            imageView.setFitWidth(300);
             imageView.setPreserveRatio(true);
             contenedor.getChildren().add(imageView);
+            title.setText(apod.getTitle());
+            date.setText(apod.getDate());
+            urlIMG.setText(apod.getUrl());
+            explanation.setText(apod.getExplanation());
         }
         catch (Exception e){
 

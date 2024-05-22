@@ -30,7 +30,7 @@
         </VBox>
     </top>
     <center>
-
+        <HBox spacing="10" fx:id="contenedor"/>
     </center>
     <bottom>
         <VBox spacing="10" alignment="BOTTOM_CENTER" style="-fx-padding: 10">
