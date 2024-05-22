@@ -2,23 +2,18 @@ package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
-import com.example.nasaapidemo.Models.MIVL.Collection;
-import com.example.nasaapidemo.Models.MIVL.Data;
 import com.example.nasaapidemo.Models.MIVL.Item;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.example.nasaapidemo.apicontroller.NIVLConsumer;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,36 +25,70 @@ public class IVLController implements Initializable {
     TextField txtBuscar;
 
     @FXML
-    HBox contenedor;
+    ScrollPane scrollPane;
+
+    @FXML
+    private GridPane contenedor;
 
     List<APOD> a_listAPOD=new ArrayList();
 
-   // APODDao a_APODDao=new APODDao();
-
     @FXML
     public void m_onClickBuscar() {
+        contenedor.getChildren().clear();
+        NIVLConsumer ivl = new NIVLConsumer();
+        Item[] arr = ivl.searchByDesc(txtBuscar.getText());
+        try {
+            int column = 0;
+            int row = 0;
+            for (Item item : arr) {
+                VBox imageBox = new VBox();
+                ImageRetriever img = new ImageRetriever();
+                ImageView imageView = new ImageView(img.getFromURL(item.getHref()));
+                imageView.setFitWidth(200);
+                imageView.setPreserveRatio(true);
+                imageBox.getChildren().add(imageView);
+
+                contenedor.add(imageBox, column, row);
+
+                column++;
+                if (column == 10) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NIVLConsumer ivl = new NIVLConsumer();
-        Item[] arr = ivl.searchbyYearRange("2014","2015");
-        /*try{
-            for(int i = 0; i < arr.length; i++){
-
+        Item[] arr = ivl.searchbyYearRange("2020", "2024");
+        try {
+            int column = 0;
+            int row = 0;
+            for (Item item : arr) {
+                VBox imageBox = new VBox();
                 ImageRetriever img = new ImageRetriever();
-                ImageView imageView = new ImageView(img.getFromURL(arr[i].getHref()));
+                ImageView imageView = new ImageView(img.getFromURL(item.getHref()));
                 imageView.setFitWidth(200);
                 imageView.setPreserveRatio(true);
-                contenedor.getChildren().add(imageView);
+                imageBox.getChildren().add(imageView);
 
+                contenedor.add(imageBox, column, row);
+
+                column++;
+                if (column == 10) {
+                    column = 0;
+                    row++;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e){
-
-        }*/
-        //System.out.println(arr[0].getHref());
     }
+
 
     @FXML
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{

@@ -11,7 +11,7 @@
             style="-fx-background-color: #3a3838">
 
     <top>
-        <VBox spacing="10" alignment="CENTER" style="-fx-background-image: url('BackgroudIVL.jpg'); -fx-background-size: cover" prefHeight="600">
+        <VBox spacing="10" alignment="CENTER" style="-fx-background-image: url('BackgroudIVL.jpg'); -fx-background-size: cover" prefHeight="550">
             <Label text="Discover" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="white"/>
             <Label text="our intergalactic multimedia collections" style="-fx-font-size: 20;-fx-font-family: 'Arial Black'" textFill="white"/>
             <HBox alignment="CENTER" spacing="5">
@@ -30,7 +30,9 @@
         </VBox>
     </top>
     <center>
-        <HBox spacing="10" fx:id="contenedor"/>
+        <ScrollPane fx:id="scrollPane">
+            <GridPane fx:id="contenedor" style="-fx-padding: 10; -fx-background-color: #3a3838; -fx-background-size: cover"/>
+        </ScrollPane>
     </center>
     <bottom>
         <VBox spacing="10" alignment="BOTTOM_CENTER" style="-fx-padding: 10">
