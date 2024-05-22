@@ -5,6 +5,7 @@
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.MarsController"
@@ -27,49 +28,24 @@
                     </graphic>
                 </Button>
             </HBox>
+            <ComboBox  fx:id="cmbNames" style="-fx-font-size: 20; -fx-background-color: #92521d">
+                <items>
+                </items>
+            </ComboBox>
             <Label/>
         </VBox>
     </top>
 
 
     <center>
-        <VBox alignment="TOP_CENTER">
-            <HBox alignment="CENTER">
-                <TableView fx:id="a_tblAPOD">
-                    <columns>
-                        <TableColumn text="ID">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="id"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Sol">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="sol"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Earth date">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="earthDate"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Image src">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="imageSrc"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Id Camera">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="idCamera"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Id Rover">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="idRover"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
-            </HBox>
+        <VBox fx:id="contenero" alignment="TOP_CENTER" spacing="10">
+            <Label fx:id="name"/>
+            <Label fx:id="landingDate"/>
+            <Label fx:id="launchDate"/>
+            <Label fx:id="status"/>
+            <Label fx:id="maxSol"/>
+            <Label fx:id="maxDate"/>
+            <Label fx:id="totalPhotos"/>
         </VBox>
     </center>
 
