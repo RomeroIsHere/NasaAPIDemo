@@ -16,6 +16,8 @@ public class MainController {
     private void onAPODonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        //APODController apod = fxmlLoader.getController();
+        //apod.setKey
     }
 
     @FXML
