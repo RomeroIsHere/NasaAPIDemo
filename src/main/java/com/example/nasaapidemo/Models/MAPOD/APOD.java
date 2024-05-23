@@ -8,7 +8,7 @@ public class APOD {
 
     private String date, title;
 
-    private String explanation, url, hdUrl, thumbnailUrl, serviceVersion;
+    private String explanation, url, hdurl, thumbnailurl, serviceVersion;
 
     public APOD() {
     }
@@ -20,8 +20,8 @@ public class APOD {
         this.title = title;
         this.explanation = explanation;
         this.url = url;
-        this.hdUrl = hdUrl;
-        this.thumbnailUrl = thumbnailUrl;
+        this.hdurl = hdUrl;
+        this.thumbnailurl = thumbnailUrl;
         this.serviceVersion = serviceVersion;
     }
 
@@ -76,19 +76,19 @@ public class APOD {
     }
 
     public String getHdUrl() {
-        return hdUrl;
+        return hdurl;
     }
 
     public void setHdUrl(String hdUrl) {
-        this.hdUrl = hdUrl;
+        this.hdurl = hdUrl;
     }
 
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
+    public String getThumbnailurl() {
+        return thumbnailurl;
     }
 
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+    public void setThumbnailurl(String thumbnailurl) {
+        this.thumbnailurl = thumbnailurl;
     }
 
     public String getTitle() {

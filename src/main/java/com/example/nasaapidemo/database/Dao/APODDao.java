@@ -35,7 +35,7 @@ public class APODDao extends MySQLConnection{
                 apod.setExplanation(rs.getString("explanation"));
                 apod.setUrl(rs.getString("url"));
                 apod.setHdUrl(rs.getString("HDurl"));
-                apod.setThumbnailUrl(rs.getString("thumbnail_url"));
+                apod.setThumbnailurl(rs.getString("thumbnail_url"));
                 apod.setServiceVersion(rs.getString("service_version"));
                 apod.setCveMedia(getCveMedia(rs.getInt("cveMedia")));
 
@@ -62,7 +62,7 @@ public class APODDao extends MySQLConnection{
             ps.setString(3, apod.getExplanation());
             ps.setString(4, apod.getUrl());
             ps.setString(5, apod.getHdUrl());
-            ps.setString(6, apod.getThumbnailUrl());
+            ps.setString(6, apod.getThumbnailurl());
             ps.setString(7, apod.getServiceVersion());
             ps.setInt(8, apod.getCveMedia().getCveMedia());
 
