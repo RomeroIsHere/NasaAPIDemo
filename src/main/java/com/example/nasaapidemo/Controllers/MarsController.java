@@ -1,7 +1,9 @@
 package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
+import com.example.nasaapidemo.Models.MMars.Photos;
 import com.example.nasaapidemo.Models.MMars.Rover;
+import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.example.nasaapidemo.apicontroller.MarsConsumer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +21,9 @@ public class MarsController implements Initializable {
 
     @FXML
     private ComboBox<String> cmbNames;
+
+    @FXML
+    private HBox contenedor;
 
     @FXML
     private Label name, landingDate, launchDate, status, maxSol, maxDate, totalPhotos;
@@ -35,41 +42,41 @@ public class MarsController implements Initializable {
     @FXML
     public void m_onClickgetInformation() {
         String selectedRover = cmbNames.getSelectionModel().getSelectedItem();
-        Rover rover;
+        Rover rover = null;
         if (selectedRover != null) {
             switch (selectedRover) {
                 case "Curiosity":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-                    name.setText("Nombre: " +rover.getName());
-                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
-                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
-                    status.setText("Estatus: " +rover.getStatus().toString());
-                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
-                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
-                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 case "Opportunity":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-                    name.setText("Nombre: " +rover.getName());
-                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
-                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
-                    status.setText("Estatus: " +rover.getStatus().toString());
-                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
-                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
-                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 case "Spirit":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-                    name.setText("Nombre: " +rover.getName());
-                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
-                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
-                    status.setText("Estatus: " +rover.getStatus().toString());
-                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
-                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
-                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 default:
                     break;
+            }
+            name.setText("Nombre: " +rover.getName());
+            landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
+            launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
+            status.setText("Estatus: " +rover.getStatus().toString());
+            maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+            maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+            totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
+            try{
+                Photos [] photos = marsConsumer.getLatest(rover.getName());
+                ImageRetriever img = new ImageRetriever();
+                for (Photos photo : photos) {
+                    System.out.println(photo.getImageSrc());
+                    ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
+                    imageView.setFitWidth(300);
+                    imageView.setPreserveRatio(true);
+                    contenedor.getChildren().add(imageView);
+                }
+            }
+            catch (Exception e){
+                System.out.println("Error" + e.getMessage());
             }
         }
     }
