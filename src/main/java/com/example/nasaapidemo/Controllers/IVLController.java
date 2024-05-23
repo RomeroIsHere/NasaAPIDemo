@@ -68,9 +68,9 @@ public class IVLController implements Initializable {
         try {
             int column = 0;
             int row = 0;
+            ImageRetriever img = new ImageRetriever();
             for (Item item : arr) {
                 VBox imageBox = new VBox();
-                ImageRetriever img = new ImageRetriever();
                 ImageView imageView = new ImageView(img.getFromURL(item.getHref()));
                 imageView.setFitWidth(200);
                 imageView.setPreserveRatio(true);

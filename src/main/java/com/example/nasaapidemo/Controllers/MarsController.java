@@ -40,33 +40,33 @@ public class MarsController implements Initializable {
             switch (selectedRover) {
                 case "Curiosity":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-                    name.setText(rover.getName());
-                    //landingDate.setText(rover.getLandingDate().toString());
-                    //launchDate.setText(rover.getLaunchDate().toString());
-                    status.setText(rover.getStatus().toString());
-                    maxSol.setText(String.valueOf(rover.getMaxSol()));
-                    maxDate.setText(String.valueOf(rover.getMaxDate()));
-                    totalPhotos.setText(String.valueOf(rover.getTotalPhotos()));
+                    name.setText("Nombre: " +rover.getName());
+                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
+                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
+                    status.setText("Estatus: " +rover.getStatus().toString());
+                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 case "Opportunity":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-                    name.setText(rover.getName());
-                    landingDate.setText(rover.getLandingDate().toString());
-                    launchDate.setText(rover.getLaunchDate().toString());
-                    status.setText(rover.getStatus().toString());
-                    maxSol.setText(String.valueOf(rover.getMaxSol()));
-                    maxDate.setText(String.valueOf(rover.getMaxDate()));
-                    totalPhotos.setText(String.valueOf(rover.getTotalPhotos()));
+                    name.setText("Nombre: " +rover.getName());
+                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
+                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
+                    status.setText("Estatus: " +rover.getStatus().toString());
+                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 case "Spirit":
                     rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-                    name.setText(rover.getName());
-                    landingDate.setText(rover.getLandingDate().toString());
-                    launchDate.setText(rover.getLaunchDate().toString());
-                    status.setText(rover.getStatus().toString());
-                    maxSol.setText(String.valueOf(rover.getMaxSol()));
-                    maxDate.setText(String.valueOf(rover.getMaxDate()));
-                    totalPhotos.setText(String.valueOf(rover.getTotalPhotos()));
+                    name.setText("Nombre: " +rover.getName());
+                    landingDate.setText("Fecha de Aterrisage: " +rover.getLandingDate().toString());
+                    launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
+                    status.setText("Estatus: " +rover.getStatus().toString());
+                    maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+                    maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+                    totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
                     break;
                 default:
                     break;

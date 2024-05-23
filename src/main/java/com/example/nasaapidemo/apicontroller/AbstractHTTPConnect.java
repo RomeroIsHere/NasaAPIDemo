@@ -9,10 +9,12 @@ public abstract class AbstractHTTPConnect {
     protected String APIkey="DEMO_KEY";
     protected HttpClient client;
     public AbstractHTTPConnect() {
+        System.out.println(APIkey);
         this.client = HttpClient.newHttpClient();
     }
     public AbstractHTTPConnect(String key) {
         this.client = HttpClient.newHttpClient();
+        System.out.println(key);
         APIkey=key;
         System.out.println(key);
     }
@@ -21,10 +23,12 @@ public abstract class AbstractHTTPConnect {
         this.APIkey = APIkey;
     }
     public HttpResponse<String> fetchRequest(HttpRequest request){
-        System.out.println(request);
+
         HttpResponse<String> response;
 
         try {
+            System.out.println("Fetching");
+            System.out.println(request);
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
             throw new RuntimeException(e);
