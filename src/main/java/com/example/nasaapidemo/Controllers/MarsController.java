@@ -1,6 +1,7 @@
 package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
+import com.example.nasaapidemo.Models.MIVL.Item;
 import com.example.nasaapidemo.Models.MMars.Photos;
 import com.example.nasaapidemo.Models.MMars.Rover;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
@@ -12,7 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +30,9 @@ public class MarsController implements Initializable {
 
     @FXML
     private Label name, landingDate, launchDate, status, maxSol, maxDate, totalPhotos;
+
+    @FXML
+    private GridPane images;
 
     MarsConsumer marsConsumer=new MarsConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
 
@@ -64,18 +70,31 @@ public class MarsController implements Initializable {
             maxSol.setText("Sol Maximo: " + rover.getMaxSol());
             maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
             totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
-            try{
+
+            try {
+                int column = 0;
+                int row = 0;
                 Photos [] photos = marsConsumer.getLatest(rover.getName());
-                ImageRetriever img = new ImageRetriever();
+                ImageRetriever img;
+                images.getChildren().clear();
                 for (Photos photo : photos) {
+                    VBox imageBox = new VBox();
+                    img = new ImageRetriever();
                     ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
-                    imageView.setFitWidth(300);
+                    imageView.setFitWidth(200);
                     imageView.setPreserveRatio(true);
-                    contenedor.getChildren().add(imageView);
+                    imageBox.getChildren().add(imageView);
+
+                    images.add(imageBox, column, row);
+
+                    column++;
+                    if (column == 10) {
+                        column = 0;
+                        row++;
+                    }
                 }
-            }
-            catch (Exception e){
-                System.out.println("Error" + e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

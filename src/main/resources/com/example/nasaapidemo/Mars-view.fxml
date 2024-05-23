@@ -6,6 +6,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.MarsController"
@@ -47,6 +48,12 @@
             <Label fx:id="maxDate" style="-fx-font-size: 20"/>
             <Label fx:id="totalPhotos" style="-fx-font-size: 20"/>
             <HBox fx:id="contenedor" alignment="CENTER" style="-fx-padding: 10" spacing="10"/>
+            <ScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">
+                <GridPane fx:id="images" alignment="CENTER" style="-fx-background-color: #3a3838; -fx-background-size: cover;">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding></GridPane>
+            </ScrollPane>
         </VBox>
     </center>
 
