@@ -21,7 +21,7 @@
                 <Label text="Aqui puedes ingresar la Key que tengas" style="-fx-font-size: 20; -fx-text-fill: white; -fx-background-color: red"/>
                 <HBox spacing="5" alignment="CENTER">
                     <TextField fx:id="txtKey" style="-fx-font-size: 20" maxWidth="400"/>
-                    <Button text="Aplicar" contentDisplay="TOP" styleClass="btn, btn-danger">
+                    <Button text="Aplicar" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onKeyClick">
                         <graphic>
                             <FontIcon iconLiteral="fas-key" iconSize="20" iconColor="white"/>
                         </graphic>

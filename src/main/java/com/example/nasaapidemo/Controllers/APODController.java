@@ -6,6 +6,7 @@ import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import com.example.nasaapidemo.apicontroller.APODConsumer;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
+import com.example.nasaapidemo.apicontroller.MarsConsumer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,27 +39,30 @@ public class APODController implements Initializable {
     @FXML
     Label title, date, urlIMG, explanation;
 
-    @FXML
-    TableView a_tblAPOD;
     List<APOD> a_listAPOD=new ArrayList();
 
     APOD apod;
 
+    String key="";
+
     APODItext a_archivo=new APODItext();
 
-   // APODDao a_APODDao=new APODDao();
+    APODConsumer APODConsumer;
+
 
     @FXML
     public void m_onClickgetInformation() {
     }
 
-    @FXML
-    public void m_onClickDelete() {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        APODConsumer APODConsumer=new APODConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
+
+        APODConsumer=new APODConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
+        if (key != ""){
+            APODConsumer=new APODConsumer(key);
+        }
+
         Date currentDate=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateTime= dateFormat.format(currentDate);
@@ -95,6 +99,10 @@ public class APODController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+    }
+
+    public void setKey(String key){
+        this.key = key;
     }
 }
 

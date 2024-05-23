@@ -30,6 +30,8 @@ public class IVLController implements Initializable {
     @FXML
     private GridPane contenedor;
 
+    String key;
+
     List<APOD> a_listAPOD=new ArrayList();
 
     @FXML
@@ -94,6 +96,10 @@ public class IVLController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+    }
+
+    public void setKey(String key){
+        this.key = key;
     }
 }
 
