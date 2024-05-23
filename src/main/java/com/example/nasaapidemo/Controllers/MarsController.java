@@ -68,7 +68,6 @@ public class MarsController implements Initializable {
                 Photos [] photos = marsConsumer.getLatest(rover.getName());
                 ImageRetriever img = new ImageRetriever();
                 for (Photos photo : photos) {
-                    System.out.println(photo.getImageSrc());
                     ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
                     imageView.setFitWidth(300);
                     imageView.setPreserveRatio(true);

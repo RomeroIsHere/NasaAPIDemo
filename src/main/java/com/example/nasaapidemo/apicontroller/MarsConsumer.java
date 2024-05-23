@@ -44,7 +44,7 @@ public class MarsConsumer extends AbstractHTTPConnect implements APIConsumer<Pho
 
     private static final String marsPhotoRoot="https://api.nasa.gov/mars-photos/api/v1/rovers/%s/photos%s";
     private static final String marsManifestRoot="https://api.nasa.gov/mars-photos/api/v1/manifests/%s%s";
-    private static final String marsLatestRoot="https://api.nasa.gov/mars-photos/api/v1/rovers/%s/latest_photos?api_key=%s";
+    private static final String marsLatestRoot="https://api.nasa.gov/mars-photos/api/v1/rovers/%s/latest_photos%s";
 
     public Photos[] getLatest(rovers rover){
         String request =String.format(marsLatestRoot,rover,buildQueryParameters(defaultMap()));
