@@ -93,6 +93,7 @@ public class APODConsumer extends AbstractHTTPConnect implements APIConsumer<APO
     }
     private Map<parameters,String> mapFromAPIkey(){
         Map<parameters,String> querySet=new HashMap<>();
+        querySet.put(parameters.thumbs,"true");
         querySet.put(parameters.api_key,APIkey);
         return querySet;
     }
