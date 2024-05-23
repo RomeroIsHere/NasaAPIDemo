@@ -46,6 +46,7 @@
             <Label fx:id="maxSol" style="-fx-font-size: 20"/>
             <Label fx:id="maxDate" style="-fx-font-size: 20"/>
             <Label fx:id="totalPhotos" style="-fx-font-size: 20"/>
+            <HBox fx:id="contenedor" alignment="CENTER" style="-fx-padding: 10" spacing="10"/>
         </VBox>
     </center>
 
