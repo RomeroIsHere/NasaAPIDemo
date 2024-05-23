@@ -34,17 +34,13 @@ public class MarsController implements Initializable {
     @FXML
     private GridPane images;
 
-    String key="";
-
     MarsConsumer marsConsumer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        marsConsumer=new MarsConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
-        if (key != ""){
-            marsConsumer=new MarsConsumer(key);
-        }
+        //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou"
+        marsConsumer=new MarsConsumer();
 
         Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
         Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
@@ -113,8 +109,5 @@ public class MarsController implements Initializable {
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
 
-    public void setKey(String key){
-        this.key = key;
-    }
 }
 

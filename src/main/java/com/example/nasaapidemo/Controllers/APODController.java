@@ -2,25 +2,16 @@ package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
-import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Reports.APODItext;
 import com.example.nasaapidemo.apicontroller.APODConsumer;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
-import com.example.nasaapidemo.apicontroller.MarsConsumer;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -58,10 +49,10 @@ public class APODController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
 
-        APODConsumer=new APODConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
-        if (key != ""){
-            APODConsumer=new APODConsumer(key);
-        }
+         //LMjFAgmTAqszvL3dmEZJMTSRpGnmmqQTfAFZ6lqe  Clave Brayan
+        //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou" Clave Alex
+        APODConsumer=new APODConsumer();
+
 
         Date currentDate=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -69,7 +60,6 @@ public class APODController implements Initializable {
 
         apod = APODConsumer.getByDateString(dateTime);
 
-        System.out.println(apod.getCveMedia());
         try{
             ImageRetriever img = new ImageRetriever();
             ImageView imageView = new ImageView(img.getFromURL(apod.getUrl()));

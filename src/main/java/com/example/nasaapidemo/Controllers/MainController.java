@@ -1,6 +1,8 @@
 package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
+import com.example.nasaapidemo.apicontroller.APODConsumer;
+import com.example.nasaapidemo.apicontroller.MarsConsumer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,25 +29,23 @@ public class MainController {
     private void onAPODonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        APODController apod = fxmlLoader.getController();
-        apod.setKey(key);
+        APODConsumer apod = new APODConsumer();
+        apod.setAPIkey(key);
     }
 
     @FXML
     private void onIVLonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        //IVLController ivl = fxmlLoader.getController();
-        //ivl.setKey(key);
+
     }
 
     @FXML
     private void onMarsonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        MarsController mars = fxmlLoader.getController();
-        mars.setKey(key);
-
+        MarsConsumer mars = new MarsConsumer();
+        mars.setAPIkey(key);
     }
 
 }
