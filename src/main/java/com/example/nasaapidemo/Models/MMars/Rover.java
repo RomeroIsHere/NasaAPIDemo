@@ -11,9 +11,12 @@ public class Rover {
     private int totalPhotos;
     @SerializedName("max_sol")
     private int maxSol;
+
     private String status;
     private String max_date;
+    private String landing_date,launch_date;
     private String name;
+    //Following need to use updateByJson when Yielding to GSON creation
     private Date landingDate, launchDate, maxDate;
 
     private Status idStatus;
@@ -32,6 +35,35 @@ public class Rover {
         this.landingDate = landingDate;
         this.launchDate = launchDate;
         this.maxDate = maxDate;
+    }
+
+    public boolean updateByJson(){
+        try{
+            maxDate=new Date(max_date);
+            launchDate=new Date(launch_date);
+            landingDate=new Date(landing_date);
+
+            idRover=getIdBYRoverName(name);
+            idStatus=new Status();
+            idStatus.setStatus(status);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+    private int getIdBYRoverName(String name) {
+        int returnable=switch(name.toLowerCase()){
+            case "curiosity":
+                yield 5;
+            case "opportunity":
+                yield 6;
+            case "spirit":
+                yield 5;
+            default:
+                yield -1;
+        };
+        return returnable;
     }
 
     public String getStatus() {
