@@ -146,13 +146,12 @@ public class MarsConsumer extends AbstractHTTPConnect implements APIConsumer<Pho
         return new Gson().fromJson(json.body(), LatestPhotos.class).latest_photos;
     }
     public Rover parseJSONManifest(HttpResponse<String> json){
-
+        System.out.println(json.body());
         Rover nuRover=new Gson().fromJson(json.body(), ManifestWrapper.class).getPhoto_manifest();
         try{
             nuRover.updateByJson();
         }catch(Exception e){
             System.out.println("Could not update");
-            System.out.println(e.getCause());
         }
         return nuRover;
     }

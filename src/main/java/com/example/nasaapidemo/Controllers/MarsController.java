@@ -21,7 +21,7 @@ public class MarsController implements Initializable {
     @FXML
     private Label name, landingDate, launchDate, status, maxSol, maxDate, totalPhotos;
 
-    MarsConsumer marsConsumer=new MarsConsumer();
+    MarsConsumer marsConsumer=new MarsConsumer("fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

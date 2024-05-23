@@ -14,13 +14,14 @@ public abstract class AbstractHTTPConnect {
     public AbstractHTTPConnect(String key) {
         this.client = HttpClient.newHttpClient();
         APIkey=key;
+        System.out.println(key);
     }
 
     public void setAPIkey(String APIkey) {
         this.APIkey = APIkey;
     }
     public HttpResponse<String> fetchRequest(HttpRequest request){
-
+        System.out.println(request);
         HttpResponse<String> response;
 
         try {

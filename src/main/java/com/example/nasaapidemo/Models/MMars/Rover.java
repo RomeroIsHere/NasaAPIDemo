@@ -15,6 +15,7 @@ public class Rover {
     private String status;
     private String max_date;
     private String landing_date,launch_date;
+    @SerializedName("name")
     private String name;
     //Following need to use updateByJson when Yielding to GSON creation
     private Date landingDate, launchDate, maxDate;
