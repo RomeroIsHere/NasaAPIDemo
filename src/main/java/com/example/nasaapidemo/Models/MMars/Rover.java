@@ -2,6 +2,7 @@ package com.example.nasaapidemo.Models.MMars;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Rover {
@@ -40,10 +41,10 @@ public class Rover {
 
     public boolean updateByJson(){
         try{
-            maxDate=new Date(max_date);
-            launchDate=new Date(launch_date);
-            landingDate=new Date(landing_date);
-
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+            maxDate=simpleDateFormat.parse(max_date);
+            launchDate=simpleDateFormat.parse(launch_date);
+            landingDate=simpleDateFormat.parse(landing_date);
             idRover=getIdBYRoverName(name);
             idStatus=new Status();
             idStatus.setStatus(status);

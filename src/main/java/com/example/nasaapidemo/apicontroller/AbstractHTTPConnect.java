@@ -21,10 +21,12 @@ public abstract class AbstractHTTPConnect {
         this.APIkey = APIkey;
     }
     public HttpResponse<String> fetchRequest(HttpRequest request){
-        System.out.println(request);
+
         HttpResponse<String> response;
 
         try {
+            System.out.println("Fetching");
+            System.out.println(request);
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
             throw new RuntimeException(e);
