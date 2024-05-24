@@ -14,7 +14,6 @@ public abstract class AbstractHTTPConnect {
     }
     public AbstractHTTPConnect(String key) {
         this.client = HttpClient.newHttpClient();
-        System.out.println(key);
         APIkey=key;
         System.out.println(key);
     }

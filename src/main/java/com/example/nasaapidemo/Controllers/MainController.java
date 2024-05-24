@@ -44,8 +44,8 @@ public class MainController {
     private void onMarsonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        MarsConsumer mars = new MarsConsumer();
-        mars.setAPIkey(key);
+        MarsController marsController=fxmlLoader.getController();
+        marsController.setAPIKey(txtKey.getText());
     }
 
 }
