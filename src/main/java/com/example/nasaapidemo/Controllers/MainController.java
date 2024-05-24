@@ -29,8 +29,8 @@ public class MainController {
     private void onAPODonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        APODConsumer apod = new APODConsumer();
-        apod.setAPIkey(key);
+        APODController apodController = fxmlLoader.getController();
+        apodController.setAPIKey(key);
     }
 
     @FXML
@@ -44,8 +44,8 @@ public class MainController {
     private void onMarsonClick(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        MarsConsumer mars = new MarsConsumer();
-        mars.setAPIkey(key);
+        MarsController marsController=fxmlLoader.getController();
+        marsController.setAPIKey(key);
     }
 
 }

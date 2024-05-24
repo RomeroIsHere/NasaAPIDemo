@@ -54,7 +54,7 @@ public class MarsConsumer extends AbstractHTTPConnect implements APIConsumer<Pho
         return parseJSONPhotosArray(result);
     }
     public Photos[] getLatest(String rover){
-        String request =String.format(marsLatestRoot,rover.toLowerCase(),buildQueryParameters(defaultMap()));
+        String request =String.format(marsLatestRoot,rover,buildQueryParameters(defaultMap()));
         HttpResponse<String> result = fetchRequest(HttpRequest.newBuilder()
                 .uri(URI.create(request))
                 .build());

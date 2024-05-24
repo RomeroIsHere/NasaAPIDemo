@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,13 +38,6 @@ public class MarsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou"
-        marsConsumer=new MarsConsumer();
-
-        Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-        Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-        Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-        cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
     }
 
     @FXML
@@ -78,17 +70,16 @@ public class MarsController implements Initializable {
                 int column = 0;
                 int row = 0;
                 Photos [] photos = marsConsumer.getLatest(rover.getName());
-                ImageRetriever img;
+                ImageRetriever img=new ImageRetriever();
                 images.getChildren().clear();
                 for (Photos photo : photos) {
-                    VBox imageBox = new VBox();
-                    img = new ImageRetriever();
+                    //VBox imageBox = new VBox();
                     ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
                     imageView.setFitWidth(200);
                     imageView.setPreserveRatio(true);
-                    imageBox.getChildren().add(imageView);
+                    //imageBox.getChildren().add(imageView);
 
-                    images.add(imageBox, column, row);
+                    images.add(imageView, column, row);
 
                     column++;
                     if (column == 10) {
@@ -109,5 +100,17 @@ public class MarsController implements Initializable {
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
 
+    public void setAPIKey(String text) {
+        //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou"
+        if (!text.isEmpty()&&!text.isBlank())
+            marsConsumer=new MarsConsumer(text);
+        else
+            marsConsumer=new MarsConsumer();
+
+        Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+        Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+        Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
+        cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+    }
 }
 
