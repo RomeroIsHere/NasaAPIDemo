@@ -60,7 +60,6 @@ public class APODController implements Initializable {
         List<APOD> v_list=new ArrayList();
         v_list.add(apod);
         a_archivo.createPdf("results/temp.pdf",v_list);
-
     }
 
     @FXML
