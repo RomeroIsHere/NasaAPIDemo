@@ -1,5 +1,7 @@
 package com.example.nasaapidemo.database.Dao;
 
+import com.example.nasaapidemo.Models.MAPOD.MediaType;
+import com.example.nasaapidemo.Models.Users.TipoUser;
 import com.example.nasaapidemo.Models.Users.User;
 import javafx.collections.FXCollections;
 
@@ -28,11 +30,9 @@ public class UserDao {
             while (rs.next())
             {
                 User user = new User();
-                user.setGmail(rs.getString("gmail"));
                 user.setUser(rs.getString("user"));
                 user.setPassword(rs.getString("password"));
-                user.setAdmin(rs.getInt("administer"));
-
+                user.setCveTipoUser(getCveTipoUsuario(rs.getString("cveTipoUsuario")));
 
                 userList.add(user);
             }
@@ -46,15 +46,14 @@ public class UserDao {
 
 
     public boolean save(User user) {
-        String query = "insert into autos " +
-                " (gmail, user, password, administer)" +
-                " values (?, ?, ?, ?)";
+        String query = "insert into user " +
+                " (user, password, cveTipoUsuario)" +
+                " values (?, MD5(?), ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, user.getGmail());
-            ps.setString(2, user.getUser());
-            ps.setString(3, user.getPassword());
-            ps.setInt(4, user.getAdmin());
+            ps.setString(1, user.getUser());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getCveTipoUser().getCveTipoUser());
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -64,31 +63,40 @@ public class UserDao {
         return false;
     }
 
-    public List<User> findbyUser(String gmail, String name) {
-
+    public Boolean findbyUser(String passw, String name) {
+        boolean exist=false;
         List<User> userList = FXCollections.observableArrayList();
-        String query = "select * from user where gmail= "+ "'"+gmail+"' and user= "+"'"+name+"'";
+        String query = "select count(*) from user where password in(select MD5("+"'"+passw+"'"+")) AND user = "+"'"+name+"'";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-
-            while (rs.next())
-            {
-                User user = new User();
-                user.setGmail(rs.getString("gmail"));
-                user.setUser(rs.getString("user"));
-                user.setPassword(rs.getString("password"));
-                user.setAdmin(rs.getInt("administer"));
-
-                userList.add(user);
+            if (rs!=null){
+                exist=true;
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return userList;
+        return exist;
     }
 
+
+    public TipoUser getCveTipoUsuario(String tipo)
+    {
+        String query = "select * from tipouser where cveTipoUser = "+ "'"+tipo+"'";
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            TipoUser tipoUser = new TipoUser();
+            tipoUser.setCveTipoUser(rs.getString("cveTipoUser"));
+            return tipoUser;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 
 

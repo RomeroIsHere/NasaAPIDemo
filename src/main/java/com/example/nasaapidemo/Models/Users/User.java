@@ -1,25 +1,26 @@
 package com.example.nasaapidemo.Models.Users;
 
 public class User {
-    String gmail, user, password;
-    int admin;
+    String user, password;
+    TipoUser cveTipoUser;
+
 
     public User(){
 
     }
-    public User(String gmail, String user, String password, int admin) {
-        this.gmail = gmail;
+    public User(TipoUser cveTipoUser, String user, String password) {
+        this.cveTipoUser = cveTipoUser;
         this.user = user;
         this.password = password;
-        this.admin = admin;
+
     }
 
-    public String getGmail() {
-        return gmail;
+    public TipoUser getCveTipoUser() {
+        return cveTipoUser;
     }
 
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
+    public void setCveTipoUser(TipoUser cveTipoUser) {
+        this.cveTipoUser = cveTipoUser;
     }
 
     public String getUser() {
@@ -38,11 +39,4 @@ public class User {
         this.password = password;
     }
 
-    public int getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(int admin) {
-        this.admin = admin;
-    }
 }
