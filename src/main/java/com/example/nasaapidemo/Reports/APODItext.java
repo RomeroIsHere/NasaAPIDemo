@@ -58,12 +58,8 @@ public class APODItext {
          //   document.add(new Paragraph().add(v).setTextAlignment(TextAlignment.CENTER));
             document.add(m_setTicket("Date: ").add(m_setResults(v_apod.getDate())));
 
-            if(v_apod.getCveMedia().getName().equalsIgnoreCase("Image"))
+
             document.add(m_setImage(v_apod.getUrl()));
-            else
-               document.add(m_setImage("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=1060"));
-
-
             document.add(new Paragraph(""));
             document.add(m_setTicket("URL: ").add(m_setResults(v_apod.getUrl()).setFontColor(ColorConstants.BLUE)));
             document.add(new Paragraph(""));
@@ -171,14 +167,5 @@ public class APODItext {
         p_document.setBorder(Border.NO_BORDER);
 
     }
-
-
-
-
-
-
-
-
-
 
 }
