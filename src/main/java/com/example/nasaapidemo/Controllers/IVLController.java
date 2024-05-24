@@ -98,8 +98,5 @@ public class IVLController implements Initializable {
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
 
-    public void setKey(String key){
-        this.key = key;
-    }
 }
 

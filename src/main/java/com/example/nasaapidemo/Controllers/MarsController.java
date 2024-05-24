@@ -100,7 +100,7 @@ public class MarsController implements Initializable {
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
 
-    public void setAPIKey(String text) {
+    public void setAPIKey(String text) throws Exception{
         //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou"
         if (!text.isEmpty()&&!text.isBlank())
             marsConsumer=new MarsConsumer(text);
@@ -108,7 +108,9 @@ public class MarsController implements Initializable {
             marsConsumer=new MarsConsumer();
 
         Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+
         Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+
         Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
         cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
     }

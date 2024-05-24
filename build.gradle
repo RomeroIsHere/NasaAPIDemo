@@ -35,6 +35,10 @@ javafx {
 }
 
 dependencies {
+
+    implementation 'org.openjfx:javafx-controls:21'//Para el jar
+    implementation 'org.openjfx:javafx-fxml:21'//Para el jar
+
     implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
         exclude(group: 'org.openjfx')
     }
@@ -72,5 +76,21 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+task customJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.example.nasaapidemo.Launcher'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    with jar
+
+    into('lib') {
+        from { configurations.runtimeClasspath }
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
 }
 

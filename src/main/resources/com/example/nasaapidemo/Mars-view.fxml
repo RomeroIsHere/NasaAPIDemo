@@ -7,6 +7,8 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.MarsController"
@@ -52,7 +54,8 @@
                 <GridPane fx:id="images" alignment="CENTER" style="-fx-background-color: #3a3838; -fx-background-size: cover;">
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding></GridPane>
+                    </padding>
+                </GridPane>
             </ScrollPane>
         </VBox>
     </center>

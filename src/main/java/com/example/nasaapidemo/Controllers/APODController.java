@@ -50,8 +50,6 @@ public class APODController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-         //LMjFAgmTAqszvL3dmEZJMTSRpGnmmqQTfAFZ6lqe  Clave Brayan
-        //"fk5hNwja1lbzQEY3QbMoRpuDoqGnUgmhVYT9V1ou" Clave Alex
     }
 
 
@@ -66,10 +64,6 @@ public class APODController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-    }
-
-    public void setKey(String key){
-        this.key = key;
     }
 
     public void setAPIKey(String text) {
