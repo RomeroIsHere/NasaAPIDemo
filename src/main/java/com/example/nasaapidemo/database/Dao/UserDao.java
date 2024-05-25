@@ -1,6 +1,5 @@
 package com.example.nasaapidemo.database.Dao;
 
-import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Models.Users.TipoUser;
 import com.example.nasaapidemo.Models.Users.User;
 import javafx.collections.FXCollections;

@@ -17,11 +17,11 @@
     <center>
         <VBox spacing="20" alignment="CENTER">
             <Label text="User" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
-            <TextField fx:id="txt_User" promptText="Type User" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <TextField fx:id="txt_User" promptText="Type User" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20; -fx-text-fill: #fff"/>
             <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
-            <TextField fx:id="txt_Password" promptText="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
-            <Label text="Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
-            <TextField fx:id="txt_Code" promptText="Repeat Your password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20"/>
+            <TextField fx:id="txt_Password" promptText="Type Password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20; -fx-text-fill: #fff"/>
+            <Label text="Repeat Password" style="-fx-text-fill: #fff; -fx-font-size: 40"/>
+            <TextField fx:id="txt_Code" promptText="Repeat Your password" prefHeight="50" maxWidth="300" style="-fx-background-color: rgba(255,255,255,0.29); -fx-font-size: 20; -fx-text-fill: #fff"/>
             <Button style="-fx-background-color: rgba(55,146,119,0.84); -fx-font-size: 20" text="Register" contentDisplay="TOP" prefWidth="130" prefHeight="30" onAction="#onClickSave">
                 <graphic>
                     <FontIcon iconLiteral="fas-door-closed" iconSize="40" iconColor="black"/>
