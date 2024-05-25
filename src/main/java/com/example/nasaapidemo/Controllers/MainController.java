@@ -41,9 +41,7 @@ public class MainController {
         btn_APOD.setDisable(true);
         btn_IVL.setDisable(true);
         btn_mars.setDisable(true);
-
-        new Thread(()->{
-
+        new Thread(()-> {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
             try {
@@ -55,17 +53,10 @@ public class MainController {
             Platform.runLater(()->{
                 APODController apodController = fxmlLoader.getController();
                 apodController.setAPIKey(key);
-                btn_apli.setDisable(true);
-                btn_APOD.setDisable(true);
-                btn_IVL.setDisable(true);
-                btn_mars.setDisable(true);
             });
 
 
-
-
         }).start();
-
 
 
 
@@ -73,9 +64,19 @@ public class MainController {
 
     @FXML
     private void onIVLonClick(javafx.event.ActionEvent actionEvent) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
-        ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        btn_apli.setDisable(true);
+        btn_APOD.setDisable(true);
+        btn_IVL.setDisable(true);
+        btn_mars.setDisable(true);
+        new Thread(()-> {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
+            try {
+                ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+        }).start();
 
     }
 
