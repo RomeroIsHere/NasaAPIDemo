@@ -50,10 +50,9 @@ public class MainController {
                 throw new RuntimeException(e);
             }
 
-            Platform.runLater(()->{
+
                 APODController apodController = fxmlLoader.getController();
                 apodController.setAPIKey(key);
-            });
 
 
         }).start();
@@ -64,6 +63,8 @@ public class MainController {
 
     @FXML
     private void onIVLonClick(javafx.event.ActionEvent actionEvent) throws Exception{
+
+
         btn_apli.setDisable(true);
         btn_APOD.setDisable(true);
         btn_IVL.setDisable(true);
@@ -82,10 +83,29 @@ public class MainController {
 
     @FXML
     private void onMarsonClick(javafx.event.ActionEvent actionEvent) throws Exception{
+        btn_apli.setDisable(true);
+        btn_APOD.setDisable(true);
+        btn_IVL.setDisable(true);
+        btn_mars.setDisable(true);
+        new Thread(()-> {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
-        ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-        MarsController marsController=fxmlLoader.getController();
-        marsController.setAPIKey(key);
+            try {
+                ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            MarsController marsController=fxmlLoader.getController();
+            try {
+                marsController.setAPIKey(key);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+
+        }).start();
+
     }
 
 
