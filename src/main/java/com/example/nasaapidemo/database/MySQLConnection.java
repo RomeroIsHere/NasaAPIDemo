@@ -12,7 +12,7 @@ public class MySQLConnection {
     private static String dbname = "nasa";
     private static String dbport = "3306";
     private static String dbuser = "topicos";
-    private static String dbpass = "topicos#";
+    private static String dbpass = "TopicosProgra#";
 
 
     public static void Connect() {
