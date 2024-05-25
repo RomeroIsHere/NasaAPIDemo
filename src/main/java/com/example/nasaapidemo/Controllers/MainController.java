@@ -92,27 +92,31 @@ public class MainController {
         btn_mars.setDisable(true);
         new Thread(()-> {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Mars-view.fxml"));
-            try {
-                ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
-               Platform.runLater(()->{
+
+
                    MarsController marsController=fxmlLoader.getController();
                    try {
                        marsController.setAPIKey(key);
                    } catch (Exception e) {
                        throw new RuntimeException(e);
                    }
-               });
 
+
+            Platform.runLater(()->{
+                try {
+                    ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(9000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
 
         }).start();
 
