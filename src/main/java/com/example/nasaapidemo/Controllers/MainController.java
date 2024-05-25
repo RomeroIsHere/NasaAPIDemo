@@ -50,9 +50,12 @@ public class MainController {
                 throw new RuntimeException(e);
             }
 
+                Platform.runLater(()->{
+                    APODController apodController = fxmlLoader.getController();
+                    apodController.setAPIKey(key);
+                });
 
-                APODController apodController = fxmlLoader.getController();
-                apodController.setAPIKey(key);
+
 
 
         }).start();
@@ -95,14 +98,21 @@ public class MainController {
                 throw new RuntimeException(e);
             }
 
+               Platform.runLater(()->{
+                   MarsController marsController=fxmlLoader.getController();
+                   try {
+                       marsController.setAPIKey(key);
+                   } catch (Exception e) {
+                       throw new RuntimeException(e);
+                   }
+               });
 
-            MarsController marsController=fxmlLoader.getController();
+
             try {
-                marsController.setAPIKey(key);
-            } catch (Exception e) {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
 
         }).start();
 
