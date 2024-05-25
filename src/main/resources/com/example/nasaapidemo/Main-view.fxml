@@ -21,24 +21,24 @@
                 <Label text="Aqui puedes ingresar la Key que tengas" style="-fx-font-size: 20; -fx-text-fill: white; -fx-background-color: red"/>
                 <HBox spacing="5" alignment="CENTER">
                     <TextField fx:id="txtKey" style="-fx-font-size: 20" maxWidth="400"/>
-                    <Button text="Aplicar" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onKeyClick">
+                    <Button fx:id="btn_apli" text="Aplicar" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onKeyClick">
                         <graphic>
                             <FontIcon iconLiteral="fas-key" iconSize="20" iconColor="white"/>
                         </graphic>
                     </Button>
                 </HBox>
             </VBox>
-            <Button text="APOD" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick" prefWidth="60" prefHeight="70">
+            <Button fx:id="btn_APOD" text="APOD" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-info" onAction="#onAPODonClick" prefWidth="60" prefHeight="70">
                 <graphic>
                     <FontIcon iconLiteral="fas-folder-open" iconSize="40" iconColor="white"/>
                 </graphic>
             </Button>
-            <Button text="IVL" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick" prefWidth="60" prefHeight="70">
+            <Button fx:id="btn_IVL" text="IVL" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-success" onAction="#onIVLonClick" prefWidth="60" prefHeight="70">
                 <graphic>
                     <FontIcon iconLiteral="fas-camera-retro" iconSize="40" iconColor="white"/>
                 </graphic>
             </Button>
-            <Button text="Mars" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick" prefWidth="60" prefHeight="70">
+            <Button fx:id="btn_mars" text="Mars" style="-fx-font-size: 15" contentDisplay="TOP" styleClass="btn, btn-warning" onAction="#onMarsonClick" prefWidth="60" prefHeight="70">
                 <graphic>
                     <FontIcon iconLiteral="fas-globe-americas" iconSize="40" iconColor="white"/>
                 </graphic>

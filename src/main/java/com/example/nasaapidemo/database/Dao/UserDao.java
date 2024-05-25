@@ -66,13 +66,19 @@ public class UserDao {
     public Boolean findbyUser(String passw, String name) {
         boolean exist=false;
         List<User> userList = FXCollections.observableArrayList();
-        String query = "select count(*) from user where password in(select MD5("+"'"+passw+"'"+")) AND user = "+"'"+name+"'";
+        String query = "select count(*) as count from user where password in(select MD5("+"'"+passw+"'"+")) AND user = "+"'"+name+"'";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            if (rs!=null){
-                exist=true;
+
+            if(rs.next()){
+
+                if(rs.getInt("count")==1)
+                    exist=true;
+
             }
+
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
