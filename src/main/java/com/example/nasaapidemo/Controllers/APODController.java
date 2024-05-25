@@ -43,10 +43,6 @@ public class APODController implements Initializable {
     APODConsumer APODConsumer;
 
 
-    @FXML
-    public void m_onClickgetInformation() {
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -93,5 +89,13 @@ public class APODController implements Initializable {
 
         }
     }
+
+
+    @FXML
+    private void m_save(){
+        System.out.println(apod.getUrl());
+    }
+
+
 }
 
