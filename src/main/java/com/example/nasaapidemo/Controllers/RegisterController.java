@@ -3,10 +3,14 @@ package com.example.nasaapidemo.Controllers;
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
 import com.example.nasaapidemo.Models.MAPOD.MediaType;
+import com.example.nasaapidemo.Models.Users.TipoUser;
+import com.example.nasaapidemo.Models.Users.User;
 import com.example.nasaapidemo.Reports.APODItext;
+import com.example.nasaapidemo.database.Dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -16,54 +20,59 @@ import java.util.List;
 
 public class RegisterController {
     @FXML
-    TextField txt_nameFile;
+    TextField txt_User,txt_Password,txt_Code;
     List<APOD> a_apods=new ArrayList();
-    @FXML
-    protected void onReportonClick() throws IOException, URISyntaxException {
-        m_temporal();
-        APODItext v_nuevo=new APODItext();
-        v_nuevo.createPdf("results/temp1.pdf",a_apods);
-    }
 
-    private void m_temporal(){
-        APOD v_apod=new APOD();
-        v_apod.setDate("2024-05-11");
-        v_apod.setHdUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_3216.jpg");
-        v_apod.setCveMedia(new MediaType());
-        v_apod.getCveMedia().setName("image");
-        v_apod.setServiceVersion("v1");
-        v_apod.setUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_960.jpg");
-        v_apod.setTitle("North Celestial Aurora");
-        v_apod.setExplanation("Graceful star trail arcs reflect planet Earth's daily rotation in this colorful night skyscape. To create the timelapse composite, on May 12 consecutive exposures were recorded with a camera fixed to a tripod on the shores of the Ashokan Reservoir, in the Catskills region of New York, USA. North star Polaris is near the center of the star trail arcs. The broad trail of a waxing crescent Moon is on the left, casting a strong reflection across the reservoir waters. With intense solar activity driving recent geomagnetic storms, the colorful aurora borealis or northern lights, rare to the region, shine under Polaris and the north celestial pole.   AuroraSaurus: Report your aurora observations");
-        a_apods.add(v_apod);
-        v_apod=new APOD();
-        v_apod.setDate("2024-05-11");
-        v_apod.setHdUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_3216.jpg");
-        v_apod.setCveMedia(new MediaType());
-        v_apod.getCveMedia().setName("image");
-        v_apod.setServiceVersion("v1");
-        v_apod.setUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_960.jpg");
-        v_apod.setTitle("North Celestial Aurora");
-        v_apod.setExplanation("This is temporal");
-        a_apods.add(v_apod);
-         v_apod=new APOD();
-        v_apod.setDate("2024-05-11");
-        v_apod.setHdUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_3216.jpg");
-        v_apod.setCveMedia(new MediaType());
-        v_apod.getCveMedia().setName("image");
-        v_apod.setServiceVersion("v1");
-        v_apod.setUrl("https://apod.nasa.gov/apod/image/2405/SunAr3664_Fantasia_960.jpg");
-        v_apod.setTitle("North Celestial Aurora");
-        v_apod.setExplanation("Graceful star trail arcs reflect planet Earth's daily rotation in this colorful night skyscape. To create the timelapse composite, on May 12 consecutive exposures were recorded with a camera fixed to a tripod on the shores of the Ashokan Reservoir, in the Catskills region of New York, USA. North star Polaris is near the center of the star trail arcs. The broad trail of a waxing crescent Moon is on the left, casting a strong reflection across the reservoir waters. With intense solar activity driving recent geomagnetic storms, the colorful aurora borealis or northern lights, rare to the region, shine under Polaris and the north celestial pole.   AuroraSaurus: Report your aurora observations");
-
-
-
-        a_apods.add(v_apod);
-    }
+    UserDao a_userDao=new UserDao();
 
     @FXML
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Login-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
     }
+
+
+    @FXML
+    private void onClickSave(){
+
+           if(m_veriCamps()){
+               User v_user=new User();
+               v_user.setCveTipoUser(new TipoUser());
+               v_user.getCveTipoUser().setCveTipoUser("us");
+               v_user.setUser(txt_User.getText());
+               v_user.setPassword(txt_Password.getText());
+
+               if(a_userDao.save(v_user))
+                   m_showAlert("User saved Susseful", "Register complete", Alert.AlertType.INFORMATION);
+               else
+                   m_showAlert("There was an error with the conection try after", "Error conection", Alert.AlertType.ERROR);
+
+           }
+
+    }
+
+    private boolean m_veriCamps(){
+        boolean v_respuesta;
+        v_respuesta=false;
+        if(txt_Password.getText().isEmpty() || txt_User.getText().isEmpty() || txt_Code.getText().isEmpty())
+                m_showAlert("Type All information plz", "Error", Alert.AlertType.ERROR);
+             else if(!txt_Password.getText().equals(txt_Code.getText()))
+            m_showAlert("Passwords Incorrects","Error", Alert.AlertType.ERROR);
+             else
+                 v_respuesta=true;
+
+        return v_respuesta;
+    }
+
+
+    private void m_showAlert(String p_msg, String p_title, Alert.AlertType p_tipe){
+        Alert v_alert=new Alert(p_tipe);
+        v_alert.setContentText(p_msg);
+        v_alert.setTitle(p_title);
+        v_alert.show();
+    }
+
+
+
+
 }

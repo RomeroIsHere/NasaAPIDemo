@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 public class MySQLConnection {
     private static Connection conn = null;
     private static String hostname   = "localhost";
-    private static String dbname = "autos";
+    private static String dbname = "nasa";
     private static String dbport = "3306";
-    private static String dbuser = "root";
-    private static String dbpass = "Rendecard49";
+    private static String dbuser = "topicos";
+    private static String dbpass = "topicos#";
 
 
     public static void Connect() {
