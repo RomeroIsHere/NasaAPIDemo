@@ -2,6 +2,7 @@ package com.example.nasaapidemo.Controllers;
 
 import com.example.nasaapidemo.MainApplication;
 import com.example.nasaapidemo.Models.MAPOD.APOD;
+import com.example.nasaapidemo.Models.MAPOD.MediaType;
 import com.example.nasaapidemo.Models.MMars.Rover;
 import com.example.nasaapidemo.Reports.APODItext;
 import com.example.nasaapidemo.apicontroller.APODConsumer;
@@ -48,7 +49,7 @@ public class APODController implements Initializable {
 
     APODConsumer APODConsumer;
 
-    APODDao apodDao;
+    APODDao apodDao=new APODDao();
 
 
 
@@ -102,6 +103,8 @@ public class APODController implements Initializable {
 
     @FXML
     private void m_save(){
+        apod.setCveMedia(new MediaType());
+        apod.getCveMedia().setCveMedia(1);
         apodDao.save(apod);
     }
 

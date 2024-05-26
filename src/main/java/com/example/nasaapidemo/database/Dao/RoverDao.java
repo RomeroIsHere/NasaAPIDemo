@@ -47,7 +47,12 @@ public class RoverDao {
         String query = "insert into rover " +
                 " (id, name, total_photos, landing_date, launch_date, max_sol, max_date, idStatus)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
-        try {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(formatter.format(rover.getMaxDate()));
+
+
+
+        /* try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, rover.getIdRover());
@@ -64,7 +69,7 @@ public class RoverDao {
         } catch (SQLException e) {
             //throw new RuntimeException(e);
             e.printStackTrace();
-        }
+        }*/
         return false;
     }
 

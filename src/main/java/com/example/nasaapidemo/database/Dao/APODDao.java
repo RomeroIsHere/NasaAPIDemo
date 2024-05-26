@@ -51,14 +51,14 @@ public class APODDao extends MySQLConnection{
 
     public boolean save(APOD apod) {
         String query = "insert into apod " +
-                " (id, date, explanation, url, HDurl, thumbnail_url, service_version, cveMedia)" +
+                " (id, date, explanation, url, HDurl, thumbnail_url, sevice_version, cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, apod.getId());
-            ps.setString(2, formatter.format(apod.getDate()));
+            ps.setString(2, apod.getDate());
             ps.setString(3, apod.getExplanation());
             ps.setString(4, apod.getUrl());
             ps.setString(5, apod.getHdUrl());

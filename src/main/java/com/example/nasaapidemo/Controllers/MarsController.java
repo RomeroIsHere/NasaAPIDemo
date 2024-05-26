@@ -35,7 +35,7 @@ public class MarsController implements Initializable {
 
     Rover rover = null;
 
-    RoverDao roverDao;
+    RoverDao roverDao=new RoverDao();
 
     Button save;
 
