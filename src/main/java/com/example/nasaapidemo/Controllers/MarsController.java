@@ -61,7 +61,7 @@ public class MarsController implements Initializable {
             }
             name.setText("Nombre: " +rover.getName());
             landingDate.setText("Fecha de Aterrizaje: " +rover.getLandingDate().toString());
-            launchDate.setText("Fceha de Lanzamiento: " +rover.getLaunchDate().toString());
+            launchDate.setText("Fecha de Lanzamiento: " +rover.getLaunchDate().toString());
             status.setText("Estatus: " +rover.getStatus().toString());
             maxSol.setText("Sol Maximo: " + rover.getMaxSol());
             maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
