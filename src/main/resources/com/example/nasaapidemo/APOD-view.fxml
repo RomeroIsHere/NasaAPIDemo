@@ -19,7 +19,11 @@
             <Label text="APOD" style="-fx-font-size: 40;-fx-font-family: 'Arial Black'" textFill="blue"/>
 
             <HBox alignment="CENTER" spacing="10">
-
+                <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-reply" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
                 <Button text="Save" styleClass="btn,btn-primary" contentDisplay="TOP" onAction="#m_save">
                     <graphic>
                         <FontIcon iconLiteral="fas-save" iconSize="40" iconColor="white"/>
@@ -47,14 +51,4 @@
             <TextArea fx:id="explanation" style="-fx-font-size: 30; -fx-text-fill: black; -fx-padding: 10" wrapText="true" editable="false"/>
         </VBox>
     </center>
-
-    <bottom>
-        <VBox spacing="10" alignment="BOTTOM_CENTER" style="-fx-padding: 10">
-            <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
-                <graphic>
-                    <FontIcon iconLiteral="fas-reply" iconSize="20" iconColor="white"/>
-                </graphic>
-            </Button>
-        </VBox>
-    </bottom>
 </BorderPane>

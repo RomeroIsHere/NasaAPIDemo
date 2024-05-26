@@ -26,9 +26,6 @@ public class MarsController implements Initializable {
     private ComboBox<String> cmbNames;
 
     @FXML
-    private HBox contenedor;
-
-    @FXML
     private Label name, landingDate, launchDate, status, maxSol, maxDate, totalPhotos;
 
     @FXML
@@ -109,9 +106,7 @@ public class MarsController implements Initializable {
             marsConsumer=new MarsConsumer();
 
         Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-
         Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-
         Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
         cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
     }
