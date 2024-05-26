@@ -7,6 +7,7 @@ import com.example.nasaapidemo.Reports.APODItext;
 import com.example.nasaapidemo.apicontroller.APODConsumer;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.example.nasaapidemo.apicontroller.MarsConsumer;
+import com.example.nasaapidemo.database.Dao.APODDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,9 +48,11 @@ public class APODController implements Initializable {
 
     APODConsumer APODConsumer;
 
+    APODDao apodDao;
 
 
-    @Override
+
+
     public void initialize(URL url, ResourceBundle resourceBundle){
     }
 
@@ -99,7 +102,7 @@ public class APODController implements Initializable {
 
     @FXML
     private void m_save(){
-        System.out.println(apod.getUrl());
+        apodDao.save(apod);
     }
 
 

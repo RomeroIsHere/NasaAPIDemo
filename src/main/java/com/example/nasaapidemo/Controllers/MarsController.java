@@ -6,10 +6,12 @@ import com.example.nasaapidemo.Models.MMars.Photos;
 import com.example.nasaapidemo.Models.MMars.Rover;
 import com.example.nasaapidemo.apicontroller.ImageRetriever;
 import com.example.nasaapidemo.apicontroller.MarsConsumer;
+import com.example.nasaapidemo.database.Dao.RoverDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -31,6 +33,12 @@ public class MarsController implements Initializable {
     @FXML
     private GridPane images;
 
+    Rover rover = null;
+
+    RoverDao roverDao;
+
+    Button save;
+
     MarsConsumer marsConsumer;
 
     @Override
@@ -41,7 +49,7 @@ public class MarsController implements Initializable {
     @FXML
     public void m_onClickgetInformation() {
         String selectedRover = cmbNames.getSelectionModel().getSelectedItem();
-        Rover rover = null;
+
         if (selectedRover != null) {
             switch (selectedRover) {
                 case "Curiosity":
@@ -109,6 +117,11 @@ public class MarsController implements Initializable {
         Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
         Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
         cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+    }
+
+    @FXML
+    private void m_save(){
+        roverDao.save(rover);
     }
 }
 
