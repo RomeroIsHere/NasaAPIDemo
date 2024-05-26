@@ -47,8 +47,12 @@ public class RoverDao {
         String query = "insert into rover " +
                 " (id, name, total_photos, landing_date, launch_date, max_sol, max_date, idStatus)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(formatter.format(rover.getMaxDate()));
+        StatusDao statusDao = new StatusDao();
+        statusDao.save(rover.getIdStatus());
+
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, rover.getIdRover());
             ps.setString(2, rover.getName());
@@ -58,12 +62,12 @@ public class RoverDao {
             ps.setInt(6, rover.getMaxSol());
             ps.setString(7, formatter.format(rover.getMaxDate()));
             ps.setInt(8, rover.getIdStatus().getIdStatus());
-
+            System.out.println("is estatus: " + rover.getIdStatus().getIdStatus());
             ps.execute();
             return true;
         } catch (SQLException e) {
-            //throw new RuntimeException(e);
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("Error al guardar el rover: " + e.getMessage());
         }
         return false;
     }

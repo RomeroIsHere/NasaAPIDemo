@@ -35,9 +35,7 @@ public class MarsController implements Initializable {
 
     Rover rover = null;
 
-    RoverDao roverDao;
-
-    Button save;
+    RoverDao roverDao=new RoverDao();
 
     MarsConsumer marsConsumer;
 
@@ -49,7 +47,6 @@ public class MarsController implements Initializable {
     @FXML
     public void m_onClickgetInformation() {
         String selectedRover = cmbNames.getSelectionModel().getSelectedItem();
-
         if (selectedRover != null) {
             switch (selectedRover) {
                 case "Curiosity":
@@ -79,12 +76,9 @@ public class MarsController implements Initializable {
                 ImageRetriever img=new ImageRetriever();
                 images.getChildren().clear();
                 for (Photos photo : photos) {
-                    //VBox imageBox = new VBox();
                     ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
                     imageView.setFitWidth(200);
                     imageView.setPreserveRatio(true);
-                    //imageBox.getChildren().add(imageView);
-
                     images.add(imageView, column, row);
 
                     column++;
@@ -92,7 +86,6 @@ public class MarsController implements Initializable {
                         column = 0;
                         row++;
                     }
-                    System.out.println(photo.getImageSrc() + " Es link este");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -113,15 +106,20 @@ public class MarsController implements Initializable {
         else
             marsConsumer=new MarsConsumer();
 
-        Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-        Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-        Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-        cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+        cmbNames.getItems().addAll("Curiosity", "Opportunity", "Spirit");
     }
 
     @FXML
     private void m_save(){
-        roverDao.save(rover);
+        if (rover != null) {
+            if (roverDao.save(rover)) {
+                System.out.println("Rover guardado con éxito.");
+            } else {
+                System.out.println("Error al guardar el rover.");
+            }
+        } else {
+            System.out.println("Rover es null.");
+        }
     }
 }
 
