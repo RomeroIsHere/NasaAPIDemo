@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.nasaapidemo.Controllers.ApodDBController"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+    <top>
+        <VBox alignment="TOP_CENTER" spacing="15">
+        <Label text="Apod Data Base"></Label>
+
+            <Button text="PDF" styleClass="btn,btn-danger" contentDisplay="TOP"  >
+                <graphic>
+                    <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
+                </graphic>
+            </Button>
+
+            <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
+                <graphic>
+                    <FontIcon iconLiteral="fas-reply" iconSize="40" iconColor="white"/>
+                </graphic>
+            </Button>
+        </VBox>
+    </top>
+
+
+
+
+    <center>
+        <VBox alignment="TOP_CENTER">
+
+            <TableView fx:id="tbl_Apods">
+
+                <columns>
+                    <TableColumn fx:id="tblColum" text="ID">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+
+                    <TableColumn fx:id="tblColum3" text="title">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="title" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+                    <TableColumn fx:id="tblColum2" text="date">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+
+
+
+
+                    <TableColumn fx:id="tblColum4" text="url">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="url" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+                    <TableColumn fx:id="tblColum5" text="hdurl">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="hdurl" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+                    <TableColumn fx:id="tblColum6" text="thumbnailurl">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="thumbnailurl" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+                    <TableColumn fx:id="tblColum7" text="serviceVersion">
+
+                        <cellValueFactory>
+                            <PropertyValueFactory property="serviceVersion" />
+                        </cellValueFactory>
+
+                    </TableColumn>
+
+
+                </columns>
+
+
+
+            </TableView>
+
+
+
+
+        </VBox>
+    </center>
+
+
+
+
+
+</BorderPane>

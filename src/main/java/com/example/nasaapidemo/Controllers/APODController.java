@@ -109,5 +109,12 @@ public class APODController implements Initializable {
     }
 
 
+    @FXML
+    private void m_openDataBase(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APODDB-view.fxml"));
+        ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+    }
+
+
 }
 

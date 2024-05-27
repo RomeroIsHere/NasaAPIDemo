@@ -34,6 +34,13 @@
                         <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
                     </graphic>
                 </Button>
+
+
+                <Button text="Data base" onAction="#m_openDataBase">
+
+
+
+                </Button>
             </HBox>
             <Label/>
         </VBox>
