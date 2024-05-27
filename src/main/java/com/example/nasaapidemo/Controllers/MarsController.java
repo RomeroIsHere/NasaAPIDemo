@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -37,6 +38,8 @@ public class MarsController implements Initializable {
 
     RoverDao roverDao=new RoverDao();
 
+    Button save;
+
     MarsConsumer marsConsumer;
 
     @Override
@@ -47,27 +50,33 @@ public class MarsController implements Initializable {
     @FXML
     public void m_onClickgetInformation() {
         String selectedRover = cmbNames.getSelectionModel().getSelectedItem();
+
         if (selectedRover != null) {
-            switch (selectedRover) {
-                case "Curiosity":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-                    break;
-                case "Opportunity":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-                    break;
-                case "Spirit":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-                    break;
-                default:
-                    break;
+            try{
+                switch (selectedRover) {
+                    case "Curiosity":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+                        break;
+                    case "Opportunity":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+                        break;
+                    case "Spirit":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
+                        break;
+                    default:
+                        break;
+                }
+
+                name.setText("Nombre: " +rover.getName());
+                landingDate.setText("Fecha de Aterrizaje: " +rover.getLandingDate().toString());
+                launchDate.setText("Fecha de Lanzamiento: " +rover.getLaunchDate().toString());
+                status.setText("Estatus: " +rover.getStatus().toString());
+                maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+                maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+                totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
+            }catch (Exception e){
+                //Aqui agrega la logica de creacion de Mensaje de Error
             }
-            name.setText("Nombre: " +rover.getName());
-            landingDate.setText("Fecha de Aterrizaje: " +rover.getLandingDate().toString());
-            launchDate.setText("Fecha de Lanzamiento: " +rover.getLaunchDate().toString());
-            status.setText("Estatus: " +rover.getStatus().toString());
-            maxSol.setText("Sol Maximo: " + rover.getMaxSol());
-            maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
-            totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
 
             try {
                 int column = 0;
@@ -76,9 +85,12 @@ public class MarsController implements Initializable {
                 ImageRetriever img=new ImageRetriever();
                 images.getChildren().clear();
                 for (Photos photo : photos) {
+                    //VBox imageBox = new VBox();
                     ImageView imageView = new ImageView(img.getFromURL(photo.getImageSrc()));
                     imageView.setFitWidth(200);
                     imageView.setPreserveRatio(true);
+                    //imageBox.getChildren().add(imageView);
+
                     images.add(imageView, column, row);
 
                     column++;
@@ -86,6 +98,7 @@ public class MarsController implements Initializable {
                         column = 0;
                         row++;
                     }
+                    System.out.println(photo.getImageSrc() + " Es link este");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -105,21 +118,22 @@ public class MarsController implements Initializable {
             marsConsumer=new MarsConsumer(text);
         else
             marsConsumer=new MarsConsumer();
-
-        cmbNames.getItems().addAll("Curiosity", "Opportunity", "Spirit");
+        try {
+            Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+            Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+            Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
+            cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("La coneccion es inestable y no puede cargar los datos");
+            alert.show();
+        }
     }
 
     @FXML
     private void m_save(){
-        if (rover != null) {
-            if (roverDao.save(rover)) {
-                System.out.println("Rover guardado con éxito.");
-            } else {
-                System.out.println("Error al guardar el rover.");
-            }
-        } else {
-            System.out.println("Rover es null.");
-        }
+        roverDao.save(rover);
     }
 }
 
