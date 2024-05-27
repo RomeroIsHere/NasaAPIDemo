@@ -51,26 +51,31 @@ public class MarsController implements Initializable {
         String selectedRover = cmbNames.getSelectionModel().getSelectedItem();
 
         if (selectedRover != null) {
-            switch (selectedRover) {
-                case "Curiosity":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-                    break;
-                case "Opportunity":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-                    break;
-                case "Spirit":
-                    rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-                    break;
-                default:
-                    break;
+            try{
+                switch (selectedRover) {
+                    case "Curiosity":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+                        break;
+                    case "Opportunity":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+                        break;
+                    case "Spirit":
+                        rover = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
+                        break;
+                    default:
+                        break;
+                }
+
+                name.setText("Nombre: " +rover.getName());
+                landingDate.setText("Fecha de Aterrizaje: " +rover.getLandingDate().toString());
+                launchDate.setText("Fecha de Lanzamiento: " +rover.getLaunchDate().toString());
+                status.setText("Estatus: " +rover.getStatus().toString());
+                maxSol.setText("Sol Maximo: " + rover.getMaxSol());
+                maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
+                totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
+            }catch (Exception e){
+                //Aqui agrega la logica de creacion de Mensaje de Error
             }
-            name.setText("Nombre: " +rover.getName());
-            landingDate.setText("Fecha de Aterrizaje: " +rover.getLandingDate().toString());
-            launchDate.setText("Fecha de Lanzamiento: " +rover.getLaunchDate().toString());
-            status.setText("Estatus: " +rover.getStatus().toString());
-            maxSol.setText("Sol Maximo: " + rover.getMaxSol());
-            maxDate.setText("Fecha Maxima: " + rover.getMaxDate());
-            totalPhotos.setText("Total de fotos: " + rover.getTotalPhotos());
 
             try {
                 int column = 0;
@@ -112,11 +117,14 @@ public class MarsController implements Initializable {
             marsConsumer=new MarsConsumer(text);
         else
             marsConsumer=new MarsConsumer();
-
-        Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
-        Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
-        Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
-        cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+        try {
+            Rover rover1 = marsConsumer.getManifestRover(MarsConsumer.rovers.curiosity);
+            Rover rover2 = marsConsumer.getManifestRover(MarsConsumer.rovers.opportunity);
+            Rover rover3 = marsConsumer.getManifestRover(MarsConsumer.rovers.spirit);
+            cmbNames.getItems().addAll(rover1.getName(), rover2.getName(), rover3.getName());
+        }catch (Exception e){
+            //Logica de Mostrar Error
+        }
     }
 
     @FXML
