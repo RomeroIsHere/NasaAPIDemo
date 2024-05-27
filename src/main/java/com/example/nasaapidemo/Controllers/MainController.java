@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
@@ -27,6 +28,10 @@ public class MainController {
     @FXML
     Button btn_apli,btn_APOD,btn_IVL,btn_mars;
 
+    @FXML
+    VBox containerKey;
+
+    boolean flag;
 
     String key = "";
 
@@ -46,6 +51,8 @@ public class MainController {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APOD-view.fxml"));
             try {
                 ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+                APODController apodController = fxmlLoader.getController();
+                apodController.getFlag(flag);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -54,14 +61,7 @@ public class MainController {
                     APODController apodController = fxmlLoader.getController();
                     apodController.setAPIKey(key);
                 });
-
-
-
-
         }).start();
-
-
-
     }
 
     @FXML
@@ -76,6 +76,8 @@ public class MainController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("IVL-view.fxml"));
             try {
                 ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+                IVLController ivlController = fxmlLoader.getController();
+                ivlController.getFlag(flag);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -96,6 +98,8 @@ public class MainController {
 
             try {
                 ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+                MarsController marsController = fxmlLoader.getController();
+                marsController.getFlag(flag);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -112,8 +116,12 @@ public class MainController {
 
 
         }).start();
-
     }
 
-
+    public void desactivar(boolean flag){
+        if(flag){
+            containerKey.getChildren().clear();
+            this.flag = flag;
+        }
+    }
 }

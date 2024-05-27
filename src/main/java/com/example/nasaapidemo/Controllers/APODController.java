@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -43,7 +44,7 @@ public class APODController implements Initializable {
 
     APOD apod;
 
-    String key="";
+    boolean flag;
 
     APODItext a_archivo=new APODItext();
 
@@ -69,6 +70,8 @@ public class APODController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        MainController mainController = fxmlLoader.getController();
+        mainController.desactivar(flag);
     }
 
     public void setAPIKey(String text) {
@@ -106,6 +109,10 @@ public class APODController implements Initializable {
         apod.setCveMedia(new MediaType());
         apod.getCveMedia().setCveMedia(1);
         apodDao.save(apod);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Informacion Guardada");
+        alert.show();
     }
 
 
@@ -113,8 +120,12 @@ public class APODController implements Initializable {
     private void m_openDataBase(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("APODDB-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        ApodDBController apodDBController = fxmlLoader.getController();
+        apodDBController.getFlag(flag);
     }
 
-
+    public void getFlag(boolean flag){
+        this.flag=flag;
+    }
 }
 

@@ -22,7 +22,7 @@ public class APODDao extends MySQLConnection{
     public List<APOD> findAll() {
 
         List<APOD> apodList = FXCollections.observableArrayList();
-        String query = "select * from apod inner join media_type";
+        String query = "select * from apod";
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -31,19 +31,18 @@ public class APODDao extends MySQLConnection{
             {
                 APOD apod = new APOD();
                 apod.setId(rs.getInt("id"));
+                apod.setTitle(String.valueOf(rs.getString("title")));
                 apod.setDate(String.valueOf(rs.getDate("date")));
                 apod.setExplanation(rs.getString("explanation"));
                 apod.setUrl(rs.getString("url"));
                 apod.setHdUrl(rs.getString("HDurl"));
                 apod.setThumbnailurl(rs.getString("thumbnail_url"));
-                apod.setServiceVersion(rs.getString("service_version"));
-                apod.setCveMedia(getCveMedia(rs.getInt("cveMedia")));
-
-
+                apod.setServiceVersion(rs.getString("sevice_version"));
                 apodList.add(apod);
             }
 
         } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
             throw new RuntimeException(e);
         }
         return apodList;
@@ -51,13 +50,13 @@ public class APODDao extends MySQLConnection{
 
     public boolean save(APOD apod) {
         String query = "insert into apod " +
-                " (id, date, explanation, url, HDurl, thumbnail_url, sevice_version, cveMedia)" +
+                " (title, date, explanation, url, HDurl, thumbnail_url, sevice_version ,cveMedia)" +
                 " values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, apod.getId());
+            ps.setString(1, apod.getTitle());
             ps.setString(2, apod.getDate());
             ps.setString(3, apod.getExplanation());
             ps.setString(4, apod.getUrl());
@@ -70,7 +69,7 @@ public class APODDao extends MySQLConnection{
             return true;
         } catch (SQLException e) {
             //throw new RuntimeException(e);
-            e.printStackTrace();
+            System.out.println("error in save: " + e.getMessage());
         }
         return false;
     }

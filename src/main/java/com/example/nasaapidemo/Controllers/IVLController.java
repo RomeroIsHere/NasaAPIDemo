@@ -30,7 +30,7 @@ public class IVLController implements Initializable {
     @FXML
     private GridPane contenedor;
 
-    String key;
+    boolean flag;
 
     List<APOD> a_listAPOD=new ArrayList();
 
@@ -96,6 +96,12 @@ public class IVLController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        MainController mainController = fxmlLoader.getController();
+        mainController.desactivar(flag);
+    }
+
+    public void getFlag(boolean flag){
+        this.flag=flag;
     }
 
 }

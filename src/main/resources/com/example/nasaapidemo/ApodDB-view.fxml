@@ -11,24 +11,26 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.nasaapidemo.Controllers.ApodDBController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-image: url('APODDBbackground.jpg'); -fx-background-size: cover">
 
 
     <top>
-        <VBox alignment="TOP_CENTER" spacing="15">
-        <Label text="Apod Data Base"></Label>
+        <VBox alignment="TOP_CENTER" spacing="15" style="-fx-padding: 10">
+            <Label text="Saved records" style="-fx-text-fill: blue; -fx-font-size: 30"/>
+            <HBox alignment="TOP_CENTER" spacing="10">
+                <Button text="PDF" styleClass="btn,btn-danger" contentDisplay="TOP" onAction="#onPDF" >
+                    <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
 
-            <Button text="PDF" styleClass="btn,btn-danger" contentDisplay="TOP"  >
-                <graphic>
-                    <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
-                </graphic>
-            </Button>
-
-            <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
-                <graphic>
-                    <FontIcon iconLiteral="fas-reply" iconSize="40" iconColor="white"/>
-                </graphic>
-            </Button>
+                <Button text="Return" contentDisplay="TOP" styleClass="btn, btn-danger" onAction="#onReturn">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-reply" iconSize="40" iconColor="white"/>
+                    </graphic>
+                </Button>
+            </HBox>
         </VBox>
     </top>
 
@@ -36,87 +38,36 @@
 
 
     <center>
-        <VBox alignment="TOP_CENTER">
-
+        <VBox alignment="TOP_CENTER" spacing="10" style="-fx-padding: 10">
             <TableView fx:id="tbl_Apods">
-
                 <columns>
-                    <TableColumn fx:id="tblColum" text="ID">
-
+                    <TableColumn fx:id="tblColumID" text="ID">
                         <cellValueFactory>
                             <PropertyValueFactory property="id" />
                         </cellValueFactory>
-
                     </TableColumn>
-
-
-                    <TableColumn fx:id="tblColum3" text="title">
-
+                    <TableColumn fx:id="tblColumTitle" text="title">
                         <cellValueFactory>
                             <PropertyValueFactory property="title" />
                         </cellValueFactory>
-
                     </TableColumn>
-
-                    <TableColumn fx:id="tblColum2" text="date">
-
+                    <TableColumn fx:id="tblColumExp" text="explanation" maxWidth="500">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="explanation"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="tblColumDate" text="date">
                         <cellValueFactory>
                             <PropertyValueFactory property="date" />
                         </cellValueFactory>
-
                     </TableColumn>
-
-
-
-
-
-                    <TableColumn fx:id="tblColum4" text="url">
-
+                    <TableColumn fx:id="tblColumURL" text="url">
                         <cellValueFactory>
                             <PropertyValueFactory property="url" />
                         </cellValueFactory>
-
                     </TableColumn>
-
-                    <TableColumn fx:id="tblColum5" text="hdurl">
-
-                        <cellValueFactory>
-                            <PropertyValueFactory property="hdurl" />
-                        </cellValueFactory>
-
-                    </TableColumn>
-
-                    <TableColumn fx:id="tblColum6" text="thumbnailurl">
-
-                        <cellValueFactory>
-                            <PropertyValueFactory property="thumbnailurl" />
-                        </cellValueFactory>
-
-                    </TableColumn>
-
-                    <TableColumn fx:id="tblColum7" text="serviceVersion">
-
-                        <cellValueFactory>
-                            <PropertyValueFactory property="serviceVersion" />
-                        </cellValueFactory>
-
-                    </TableColumn>
-
-
                 </columns>
-
-
-
             </TableView>
-
-
-
-
         </VBox>
     </center>
-
-
-
-
-
 </BorderPane>

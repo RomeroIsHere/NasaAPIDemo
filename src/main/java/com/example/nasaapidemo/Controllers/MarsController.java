@@ -38,7 +38,7 @@ public class MarsController implements Initializable {
 
     RoverDao roverDao=new RoverDao();
 
-    Button save;
+    boolean flag;
 
     MarsConsumer marsConsumer;
 
@@ -110,6 +110,8 @@ public class MarsController implements Initializable {
     private void onReturn(javafx.event.ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
         ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        MainController mainController = fxmlLoader.getController();
+        mainController.desactivar(flag);
     }
 
     public void setAPIKey(String text) throws Exception{
@@ -134,6 +136,10 @@ public class MarsController implements Initializable {
     @FXML
     private void m_save(){
         roverDao.save(rover);
+    }
+
+    public void getFlag(boolean flag){
+        this.flag=flag;
     }
 }
 

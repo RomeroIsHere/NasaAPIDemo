@@ -18,16 +18,28 @@ public class LoginController {
     UserDao a_userDao=new UserDao();
 
     public void m_onDirigir(javafx.event.ActionEvent actionEvent) throws Exception{
+        boolean flag=false;
         if(m_ceriDatas()){
 
             if(a_userDao.findbyUser(txtPassword.getText(),txtUser.getText())){
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
             ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+                MainController marsController = fxmlLoader.getController();
+                marsController.desactivar(flag);
             } else
                 m_showAlert("Password or user incorrect","Error login", Alert.AlertType.ERROR);
 
         }else
             m_showAlert("Type all information plz","Error", Alert.AlertType.ERROR);
+    }
+
+    @FXML
+    public void onInvitado(javafx.event.ActionEvent actionEvent) throws Exception{
+        boolean flag = true;
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Main-view.fxml"));
+        ((Node) actionEvent.getSource()).getScene().setRoot(fxmlLoader.load());
+        MainController marsController = fxmlLoader.getController();
+        marsController.desactivar(flag);
     }
 
 

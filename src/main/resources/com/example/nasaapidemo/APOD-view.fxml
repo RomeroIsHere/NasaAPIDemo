@@ -34,12 +34,10 @@
                         <FontIcon iconLiteral="fas-file-pdf" iconSize="40" iconColor="white"/>
                     </graphic>
                 </Button>
-
-
-                <Button text="Data base" onAction="#m_openDataBase">
-
-
-
+                <Button text="Saved records" styleClass="btn,btn-primary" contentDisplay="TOP" onAction="#m_openDataBase">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-list-alt" iconSize="40" iconColor="white"/>
+                    </graphic>
                 </Button>
             </HBox>
             <Label/>

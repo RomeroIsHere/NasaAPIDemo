@@ -30,6 +30,11 @@
                             <FontIcon iconLiteral="fas-user-alt" iconSize="40" iconColor="black"/>
                         </graphic>
                     </Button>
+                    <Button text="Invitado" style="-fx-background-color: rgba(146,55,55,0.84); -fx-font-size: 15; -fx-text-fill: black" contentDisplay="TOP" styleClass="btn, btn-danger" prefWidth="100" prefHeight="30" onAction="#onInvitado">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-user-clock" iconSize="40" iconColor="black"/>
+                        </graphic>
+                    </Button>
                 </HBox>
             </VBox>
         </center>
